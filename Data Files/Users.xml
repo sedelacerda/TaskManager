@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Users>
+	<User>
+		<Email>sedelacerda@uc.cl</Email>
+		<Password>qwerty</Password>
+		<PID>1111</PID>
+		<PID>2222</PID>
+	</User>
+	<User>
+		<Email>pjdonoso@uc.cl</Email>
+		<Password>poiuyt</Password>
+		<PID>3333</PID>
+		<PID>4444</PID>
+	</User>
+	<User>
+		<Email>jmleighton@uc.cl</Email>
+		<Password>098765</Password>
+		<PID>5555</PID>
+		<PID>6666</PID>
+	</User>
+</Users>
