@@ -7,14 +7,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class Searcher {

@@ -17,7 +17,7 @@
 		<Description>Tarea2</Description>
 		<Context>En la oficina</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>20-05-2015</Deadline>
 		<Responsible>sedelacerda@uc.cl</Responsible>
 		<Executors>
 			<Email>sedelacerda@uc.cl</Email>
@@ -28,7 +28,7 @@
 		<Description>Tarea3</Description>
 		<Context>En la oficina</Context>
 		<State>FROZEN</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>25-04-2015</Deadline>
 		<Responsible>sedelacerda@uc.cl</Responsible>
 		<Executors>
 			<Email>sedelacerda@uc.cl</Email>
@@ -39,7 +39,7 @@
 		<Description>Tarea4</Description>
 		<Context>En la oficina</Context>
 		<State>FROZEN</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>01-05-2015</Deadline>
 		<Responsible>sedelacerda@uc.cl</Responsible>
 		<Executors>
 			<Email>sedelacerda@uc.cl</Email>
@@ -50,7 +50,7 @@
 		<Description>Tarea5</Description>
 		<Context>En el auto</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>05-05-2015</Deadline>
 		<Responsible>pjdonoso@uc.cl</Responsible>
 		<Executors>
 			<Email>pjdonoso@uc.cl</Email>
@@ -61,7 +61,7 @@
 		<Description>Tarea6</Description>
 		<Context>En el auto</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>29-04-2015</Deadline>
 		<Responsible>pjdonoso@uc.cl</Responsible>
 		<Executors>
 			<Email>pjdonoso@uc.cl</Email>
@@ -72,7 +72,7 @@
 		<Description>Tarea7</Description>
 		<Context>En el auto</Context>
 		<State>CLOSED</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>18-05-2015</Deadline>
 		<Responsible>pjdonoso@uc.cl</Responsible>
 		<Executors>
 			<Email>pjdonoso@uc.cl</Email>
@@ -94,7 +94,7 @@
 		<Description>Tarea9</Description>
 		<Context>Al telefono</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>03-06-2015</Deadline>
 		<Responsible>jmleighton@uc.cl</Responsible>
 		<Executors>
 			<Email>jmleighton@uc.cl</Email>
@@ -105,7 +105,7 @@
 		<Description>Tarea10</Description>
 		<Context>Al telefono</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>29-05-2015</Deadline>
 		<Responsible>jmleighton@uc.cl</Responsible>
 		<Executors>
 			<Email>jmleighton@uc.cl</Email>
@@ -116,7 +116,7 @@
 		<Description>Tarea11</Description>
 		<Context>Al telefono</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>29-04-2015</Deadline>
 		<Responsible>jmleighton@uc.cl</Responsible>
 		<Executors>
 			<Email>jmleighton@uc.cl</Email>
@@ -127,7 +127,7 @@
 		<Description>Tarea12</Description>
 		<Context>Al telefono</Context>
 		<State>ACTIVE</State>
-		<Deadline>25-05-2015</Deadline>
+		<Deadline>01-05-2015</Deadline>
 		<Responsible>jmleighton@uc.cl</Responsible>
 		<Executors>
 			<Email>jmleighton@uc.cl</Email>

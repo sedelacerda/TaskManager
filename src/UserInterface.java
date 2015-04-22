@@ -1,16 +1,20 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.text.DateFormat;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.*;
 
 public class UserInterface extends JFrame implements ActionListener, ListSelectionListener {
 	
+	JLabel LB_bienvenido;
 	JLabel LB_email;
 	JTextField TF_email;
 	JLabel LB_password;
@@ -40,9 +44,20 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		gbc = new GridBagConstraints();
 		setLayout(grid);
 		
-		LB_email = new JLabel("Ingresar Email: ");
+		LB_bienvenido = new JLabel("Bienvenido");
+		LB_bienvenido.setFont(new Font("Serif", Font.PLAIN, 25));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		add(LB_bienvenido,gbc);
+		
+		LB_email = new JLabel("Ingresar Email: ");
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -53,7 +68,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		TF_email = new JTextField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -64,7 +79,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		LB_password = new JLabel("Ingresar Password: ");
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -75,7 +90,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		PF_password = new JPasswordField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -86,7 +101,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 
 		BT_login = new JButton("Iniciar Sesion");
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -100,7 +115,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		LB_incorrect_password = new JLabel("*Usuario y/o contraseña inválidos, intente de nuevo.");
 		LB_incorrect_password.setForeground(Color.red);
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 2;
 		gbc.weightx = 0.0;
@@ -120,20 +135,21 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		remove(PF_password);
 		remove(BT_login);
 		remove(LB_incorrect_password);
+		remove(LB_bienvenido);
 		revalidate();
 		repaint();
 		
 		/*Ahora cargamos los elementos de esta vista */
 		
 		/* Primero cargamos el menu superior */
-		JMenuBar MB_menu = new JMenuBar();
+		MB_menu = new JMenuBar();
 		setJMenuBar(MB_menu);
-		JMenu MN_vistas = new JMenu("Vistas");
+		MN_vistas = new JMenu("Vistas");
 		MB_menu.add(MN_vistas);
-		JMenuItem MI_vista1 = new JMenuItem("Ver tareas por proyecto");
+		MI_vista1 = new JMenuItem("Ver tareas por proyecto");
 		MI_vista1.addActionListener(this);
 		MN_vistas.add(MI_vista1);
-		JMenuItem MI_vista2 = new JMenuItem("Ver");
+		MI_vista2 = new JMenuItem("Ver usuarios por proyecto");
 		MI_vista2.addActionListener(this);
 		MN_vistas.add(MI_vista2);
 		
@@ -160,20 +176,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.anchor = GridBagConstraints.EAST;
 		add(SP_projects,gbc);
-		
-		/* Ahora creamos una tabla y un scroll para mostrar las tareas */
-		/*Object[][] data = {
-				{"Hola", 1},
-				{"Chao", 2}
-		};
-		
-		
-		JTable TB_table = new JTable(data, columnNames);
-		TB_table.setPreferredScrollableViewportSize(new Dimension(600, 70));
-		
-		JScrollPane SP_scroll = new JScrollPane(TB_table);
-		*/
-		
+				
 		
 		TB_tasks = new JTable();
 		SP_tasks = new JScrollPane(TB_tasks);
@@ -190,7 +193,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		add(SP_tasks,gbc);
 		
 		setVisible(true);
-		
 		
 	}
 	
@@ -225,6 +227,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		}
 	}
 	
+	/* Handler para el JList de los proyectos */
 	public void valueChanged(ListSelectionEvent e){
 		if(e.getSource() == LS_projects){
 			

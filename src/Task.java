@@ -43,7 +43,7 @@ public class Task {
 	
 	/* Public methods */
 	public void setProject(Project tasks_project) {
-		
+		project = tasks_project;
 	}
 	
 	public Project getProject() {
@@ -51,7 +51,7 @@ public class Task {
 	}
 	
 	public void setDeadline(Date new_deadline) {
-		
+		deadline = new_deadline;
 	}
 	
 	public Date getDeadline() {
@@ -59,7 +59,7 @@ public class Task {
 	}
 	
 	public void setState(State new_state) {
-		
+		currentState = new_state;
 	}
 	
 	public State getState() {
@@ -67,7 +67,7 @@ public class Task {
 	}
 	
 	public void setDescription(String new_description) {
-		
+		description = new_description;
 	}
 	
 	public String getDescription() {
@@ -75,7 +75,7 @@ public class Task {
 	}
 	
 	public void setContext(String new_context) {
-		
+		context = new_context;
 	}
 	
 	public String getContext() {
@@ -83,7 +83,7 @@ public class Task {
 	}
 	
 	public void setResponsible(User new_responsible) {
-		
+		currentResponsible = new_responsible;
 	}
 	
 	public User getResponsible() {
@@ -91,11 +91,11 @@ public class Task {
 	}
 	
 	public void AddExecutor(User new_executor) {
-		
+		currentExecutors.add(new_executor);
 	}
 	
 	public void RemoveExecutor(User executor_to_remove) {
-		
+		currentExecutors.remove(executor_to_remove);
 	}
 	
 	

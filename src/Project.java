@@ -9,6 +9,7 @@ public class Project {
 	private String description;
 	private State currentState;
 	private List<Task> tasks = new ArrayList<Task>();
+	private List<User> users = new ArrayList<User>();
 	private HashMap<Integer,Task> taskByID = new HashMap<Integer,Task>();
 	
 	public Project(int project_id, String project_description, State project_state) {
@@ -47,6 +48,18 @@ public class Project {
 	
 	public List<Task> getTasks(){
 		return tasks;
+	}
+	
+	public List<User> getUsers(){
+		return users;
+	}
+	
+	public void AddUser(User new_user){
+		users.add(new_user);
+	}
+	
+	public void RemoveUser(User remove_user){
+		users.remove(remove_user);
 	}
 
 }
