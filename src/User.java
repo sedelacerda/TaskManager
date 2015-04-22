@@ -49,5 +49,9 @@ public class User {
 	public boolean isLogged() {
 		return isLoggedIn;
 	}
+	
+	public Project getProjectByID(int project_id){
+		return projectByID.get(project_id);
+	}
 
 }

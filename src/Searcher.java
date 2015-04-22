@@ -9,8 +9,11 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -61,7 +64,7 @@ public class Searcher {
 	public void LoadUserData(User user){
 		try{
 			List<String> PIDlist = new ArrayList<String>();
-			List<List<Integer>> TIDlist = new ArrayList<List<Integer>>();
+			List<List<String>> TIDlist = new ArrayList<List<String>>();
 			
 			/* Primero buscamos los proyectos asociados al usuario loggeado */
 			File fXmlFile = new File("../TaskManager/Data Files/Users.xml");
@@ -128,18 +131,77 @@ public class Searcher {
 								auxState = State.FROZEN;
 							else
 								auxState = State.ACTIVE;
-							/* Finalmente creamos el proyecto */
+							/* Creamos el proyecto */
 							Project p = new Project(Integer.parseInt(PIDlist.get(i)), auxDescription, auxState);
 							Main.user.AddProject(p);
-							System.out.println("PID="+PIDlist.get(i)+" Desc="+auxDescription+" State="+auxState.toString());
+							
+							/* Ahora rellenamos la lista TIDlist */
+							NodeList nList2 = doc.getElementsByTagName("Tasks");
+							Node nNode2 = nList2.item(temp);
+							
+							if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
+								
+								Element eElement2 = (Element) nNode2;
+								List<String> auxTIDlist = new ArrayList<String>();
+								
+								/* Con el siguiente for recogemos todos los TID de un mismo proyecto */
+								for(int j=0; j<eElement2.getElementsByTagName("TID").getLength(); j++){
+									
+									auxTIDlist.add(eElement2.getElementsByTagName("TID").item(j).getTextContent());
+								}	
+								
+								/* Finalmente agregamos la lista de TIDs del proyecto a una lista que contiene todas estas listas */
+								TIDlist.add(auxTIDlist);
+							}
 						}
 					}
+					
 				}
 			}
 			
 			/* Ahora debemos buscar las tareas asociadas a los proyectos encontrados */
+			fXmlFile = new File("../TaskManager/Data Files/Tasks.xml");
+			dbFactory = DocumentBuilderFactory.newInstance();
+			dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(fXmlFile);
 			
+			doc.getDocumentElement().normalize();
 			
+			nList = doc.getElementsByTagName("Task");
+			
+			for (int i = 0;i<TIDlist.size();i++){				//cada proyecto
+				
+				for (int j = 0;j<TIDlist.get(i).size();j++){	//cada tarea
+					
+					for (int temp = 0; temp < nList.getLength(); temp++) {
+				 
+						Node nNode = nList.item(temp);
+						
+						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					
+							Element eElement = (Element) nNode;
+									
+							if (eElement.getElementsByTagName("TID").item(0).getTextContent().equals(TIDlist.get(i).get(j))){
+								
+								String description = eElement.getElementsByTagName("Description").item(0).getTextContent();
+								String context = eElement.getElementsByTagName("Context").item(0).getTextContent();
+								State state;
+								if(eElement.getElementsByTagName("State").item(0).getTextContent().toLowerCase().equals("closed"))
+									state = State.CLOSED;
+								if(eElement.getElementsByTagName("State").item(0).getTextContent().toLowerCase().equals("frozen"))
+									state = State.FROZEN;
+								else
+									state = State.ACTIVE;
+								DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+								Date deadline = new Date();
+								deadline = df.parse(eElement.getElementsByTagName("Deadline").item(0).getTextContent());
+								Task task = new Task(Integer.parseInt(TIDlist.get(i).get(j)),description, context, user.getProjectByID(Integer.parseInt(PIDlist.get(i))), deadline, state);
+								user.getProjectByID(Integer.parseInt(PIDlist.get(i))).AddTask(task);								
+							}
+						}
+					}
+				}
+			}
 		}
 		catch(Exception e){
 			e.printStackTrace();

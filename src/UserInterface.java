@@ -1,12 +1,15 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
+import java.text.DateFormat;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
 
-public class UserInterface extends JFrame implements ActionListener {
+public class UserInterface extends JFrame implements ActionListener, ListSelectionListener {
 	
 	JLabel LB_email;
 	JTextField TF_email;
@@ -18,6 +21,11 @@ public class UserInterface extends JFrame implements ActionListener {
 	JMenuBar MB_menu;
 	JMenu MN_vistas;
 	JMenuItem MI_vista1, MI_vista2;
+	JList LS_projects;
+	JScrollPane SP_projects;
+	GridBagLayout grid;
+	JTable TB_tasks;
+	JScrollPane SP_tasks;
 	
 	public UserInterface() {
 		super("Task Manager");
@@ -28,7 +36,7 @@ public class UserInterface extends JFrame implements ActionListener {
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		GridBagLayout grid = new GridBagLayout();
+		grid = new GridBagLayout();
 		gbc = new GridBagConstraints();
 		setLayout(grid);
 		
@@ -129,18 +137,57 @@ public class UserInterface extends JFrame implements ActionListener {
 		MI_vista2.addActionListener(this);
 		MN_vistas.add(MI_vista2);
 		
+		List<Project> projects = Main.user.getProjects();
+		String[] projectsDescription = new String[projects.size()];
+		
+		for(int i=0; i<projects.size();i++){
+			projectsDescription[i] = ""+projects.get(i).getDescription();
+		}
+		
+		
+		LS_projects = new JList(projectsDescription);
+		LS_projects.addListSelectionListener(this);
+		LS_projects.setSelectedIndex(0);
+		SP_projects = new JScrollPane(LS_projects);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.insets = new Insets(10,10,10,0);//arriba,izquierda,abajo,derecha
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.EAST;
+		add(SP_projects,gbc);
+		
 		/* Ahora creamos una tabla y un scroll para mostrar las tareas */
-		Object[][] data = {
+		/*Object[][] data = {
 				{"Hola", 1},
 				{"Chao", 2}
 		};
-		String[] columnNames = {"Palabra", "Numero"};
+		
 		
 		JTable TB_table = new JTable(data, columnNames);
 		TB_table.setPreferredScrollableViewportSize(new Dimension(600, 70));
 		
 		JScrollPane SP_scroll = new JScrollPane(TB_table);
-		add(SP_scroll);
+		*/
+		
+		
+		TB_tasks = new JTable();
+		SP_tasks = new JScrollPane(TB_tasks);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.insets = new Insets(10,10,10,10);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.WEST;
+		add(SP_tasks,gbc);
 		
 		setVisible(true);
 		
@@ -175,6 +222,40 @@ public class UserInterface extends JFrame implements ActionListener {
 		/* Handler del segundo item de la pestaña vistas del menu superior */
 		if(e.getSource() == MI_vista2) {
 			
+		}
+	}
+	
+	public void valueChanged(ListSelectionEvent e){
+		if(e.getSource() == LS_projects){
+			
+			String[] columnNames = {"Description", "Context", "State", "Deadline"};
+			int ntasks = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().size();
+			Object[][] data = new Object[ntasks][];
+			
+			DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+			
+			for(int i = 0;i<ntasks;i++){
+				data[i] = new Object[4];
+				data[i][0] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getDescription();
+				data[i][1] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getContext();
+				data[i][2] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getState();
+				data[i][3] = df.format(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getDeadline());
+			}
+			
+			TB_tasks = new JTable(data, columnNames);
+			SP_tasks = new JScrollPane(TB_tasks);
+			gbc.gridx = 1;
+			gbc.gridy = 0;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.weightx = 1.0;
+			gbc.weighty = 1.0;
+			gbc.insets = new Insets(10,10,10,10);
+			gbc.fill = GridBagConstraints.BOTH;
+			gbc.anchor = GridBagConstraints.WEST;
+			add(SP_tasks,gbc);
+			
+			setVisible(true);
 		}
 	}
 

@@ -9,7 +9,7 @@ public class Project {
 	private String description;
 	private State currentState;
 	private List<Task> tasks = new ArrayList<Task>();
-	private HashMap<Integer,Task> taskByID;
+	private HashMap<Integer,Task> taskByID = new HashMap<Integer,Task>();
 	
 	public Project(int project_id, String project_description, State project_state) {
 		this.PID = project_id;
@@ -18,11 +18,11 @@ public class Project {
 	}
 	
 	public void AddTask(Task new_task) {
-		
+		tasks.add(new_task);
 	}
 	
 	public void RemoveTask(int task_id) {
-		
+		tasks.remove(taskByID.get(task_id));
 	}
 	
 	public State getState() {
@@ -30,11 +30,23 @@ public class Project {
 	}
 	
 	public void setState(State new_state) {
-		
+		currentState = new_state;
 	}
 	
 	public int getPID(){
 		return PID;
+	}
+	
+	public void setDescription(String new_description){
+		this.description = new_description;
+	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public List<Task> getTasks(){
+		return tasks;
 	}
 
 }

@@ -14,6 +14,17 @@ public class Task {
 	
 	/* Constructores */
 	/* Para mayor flexibilidad se establece varios tipos de constructores */
+	
+
+	public Task(int task_id, String task_description, String task_context, Project tasks_project, Date task_deadline, State task_state) {
+		this.TID = task_id;
+		this.description = task_description;
+		this.context = task_context;
+		this.project = tasks_project;
+		this.deadline = task_deadline;
+		this.currentState = task_state;
+	}
+
 	public Task(String task_description, String task_context, Project tasks_project, Date task_deadline) {
 		
 	}
