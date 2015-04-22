@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,11 +8,13 @@ public class Project {
 	private int PID;
 	private String description;
 	private State currentState;
-	private List<Task> tasks;
+	private List<Task> tasks = new ArrayList<Task>();
 	private HashMap<Integer,Task> taskByID;
 	
-	public Project(String project_description) {
+	public Project(int project_id, String project_description, State project_state) {
+		this.PID = project_id;
 		this.description = project_description;
+		this.currentState = project_state;
 	}
 	
 	public void AddTask(Task new_task) {
@@ -28,6 +31,10 @@ public class Project {
 	
 	public void setState(State new_state) {
 		
+	}
+	
+	public int getPID(){
+		return PID;
 	}
 
 }

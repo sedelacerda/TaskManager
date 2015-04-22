@@ -4,19 +4,25 @@
 	<User>
 		<Email>sedelacerda@uc.cl</Email>
 		<Password>qwerty</Password>
-		<PID>1111</PID>
-		<PID>2222</PID>
+		<Projects>
+			<PID>1111</PID>
+			<PID>2222</PID>
+		</Projects>
 	</User>
 	<User>
 		<Email>pjdonoso@uc.cl</Email>
 		<Password>poiuyt</Password>
-		<PID>3333</PID>
-		<PID>4444</PID>
+		<Projects>
+			<PID>3333</PID>
+			<PID>4444</PID>
+		</Projects>
 	</User>
 	<User>
 		<Email>jmleighton@uc.cl</Email>
 		<Password>098765</Password>
-		<PID>5555</PID>
-		<PID>6666</PID>
+		<Projects>
+			<PID>5555</PID>
+			<PID>6666</PID>
+		</Projects>
 	</User>
 </Users>
