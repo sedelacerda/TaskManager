@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Tasks>
+	<Task>
+		<TID>11110000</TID>
+		<Description>Tarea1</Description>
+		<Context>En la oficina</Context>
+		<State>ACTIVE</State>
+		<Deadline>25-05-2015</Deadline>
+		<Responsible>sedelacerda@uc.cl</Responsible>
+		<Executors>
+			<Email>sedelacerda@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11120000</TID>
+		<Description>Tarea2</Description>
+		<Context>En la oficina</Context>
+		<State>ACTIVE</State>
+		<Deadline>20-05-2015</Deadline>
+		<Responsible>sedelacerda@uc.cl</Responsible>
+		<Executors>
+			<Email>sedelacerda@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11130000</TID>
+		<Description>Tarea3</Description>
+		<Context>En la oficina</Context>
+		<State>FROZEN</State>
+		<Deadline>25-04-2015</Deadline>
+		<Responsible>sedelacerda@uc.cl</Responsible>
+		<Executors>
+			<Email>sedelacerda@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11140000</TID>
+		<Description>Tarea4</Description>
+		<Context>En la oficina</Context>
+		<State>FROZEN</State>
+		<Deadline>01-05-2015</Deadline>
+		<Responsible>sedelacerda@uc.cl</Responsible>
+		<Executors>
+			<Email>sedelacerda@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11150000</TID>
+		<Description>Tarea5</Description>
+		<Context>En el auto</Context>
+		<State>ACTIVE</State>
+		<Deadline>05-05-2015</Deadline>
+		<Responsible>pjdonoso@uc.cl</Responsible>
+		<Executors>
+			<Email>pjdonoso@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11160000</TID>
+		<Description>Tarea6</Description>
+		<Context>En el auto</Context>
+		<State>ACTIVE</State>
+		<Deadline>29-04-2015</Deadline>
+		<Responsible>pjdonoso@uc.cl</Responsible>
+		<Executors>
+			<Email>pjdonoso@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11170000</TID>
+		<Description>Tarea7</Description>
+		<Context>En el auto</Context>
+		<State>CLOSED</State>
+		<Deadline>18-05-2015</Deadline>
+		<Responsible>pjdonoso@uc.cl</Responsible>
+		<Executors>
+			<Email>pjdonoso@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11180000</TID>
+		<Description>Tarea8</Description>
+		<Context>En el auto</Context>
+		<State>CLOSED</State>
+		<Deadline>25-05-2015</Deadline>
+		<Responsible>pjdonoso@uc.cl</Responsible>
+		<Executors>
+			<Email>pjdonoso@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11190000</TID>
+		<Description>Tarea9</Description>
+		<Context>Al telefono</Context>
+		<State>ACTIVE</State>
+		<Deadline>03-06-2015</Deadline>
+		<Responsible>jmleighton@uc.cl</Responsible>
+		<Executors>
+			<Email>jmleighton@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11200000</TID>
+		<Description>Tarea10</Description>
+		<Context>Al telefono</Context>
+		<State>ACTIVE</State>
+		<Deadline>29-05-2015</Deadline>
+		<Responsible>jmleighton@uc.cl</Responsible>
+		<Executors>
+			<Email>jmleighton@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11210000</TID>
+		<Description>Tarea11</Description>
+		<Context>Al telefono</Context>
+		<State>ACTIVE</State>
+		<Deadline>29-04-2015</Deadline>
+		<Responsible>jmleighton@uc.cl</Responsible>
+		<Executors>
+			<Email>jmleighton@uc.cl</Email>
+		</Executors>
+	</Task>
+	<Task>
+		<TID>11220000</TID>
+		<Description>Tarea12</Description>
+		<Context>Al telefono</Context>
+		<State>ACTIVE</State>
+		<Deadline>01-05-2015</Deadline>
+		<Responsible>jmleighton@uc.cl</Responsible>
+		<Executors>
+			<Email>jmleighton@uc.cl</Email>
+		</Executors>
+	</Task>
+</Tasks>
