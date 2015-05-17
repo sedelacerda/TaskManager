@@ -15,7 +15,7 @@ public class Main {
 	public static void LogInUser(String user_email, String user_password) {
 		user = new User(user_email, user_password);
 		user.LogIn();
-		ui.ShowTasksByProjectScreen(user.getProjects());
+		ui.ShowHome();
 	}
 
 }

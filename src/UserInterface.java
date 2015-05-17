@@ -11,9 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.*;
-
-public class UserInterface extends JFrame implements ActionListener, ListSelectionListener {
-	
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+public class UserInterface extends JFrame implements ActionListener, ListSelectionListener, KeyListener{
+	//Vista LogIn
 	JLabel LB_bienvenido;
 	JLabel LB_email;
 	JTextField TF_email;
@@ -21,18 +22,25 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JPasswordField PF_password;
 	JButton BT_login;
 	JLabel LB_incorrect_password;
-	GridBagConstraints gbc;
-	JMenuBar MB_menu;
+	JButton BT_LogOut;
+	//Menu de arriba
+	JMenuBar MB_menu = new JMenuBar();
 	JMenu MN_vistas;
-	JMenuItem MI_vista1, MI_vista2;
+	JMenuItem MI_vista1;
+	JMenuItem MI_vista2;
+	//Home
+	
+	//Tareas por proyecto y proyectos por usuario
+	GridBagConstraints gbc;
 	JList LS_projects;
 	JScrollPane SP_projects;
-	GridBagLayout grid;
-	JTable TB_tasks;
-	JScrollPane SP_tasks;
+	GridBagLayout grid ;
+	JTable TB_tasks ;
+	JScrollPane SP_tasks ;
 	
 	public UserInterface() {
 		super("Task Manager");
+		
 	}
 	
 	public void ShowLoginScreen(){
@@ -76,6 +84,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.anchor = GridBagConstraints.WEST;
 		add(TF_email,gbc);
+		TF_email.addKeyListener(this);
 		
 		LB_password = new JLabel("Ingresar Password: ");
 		gbc.gridx = 0;
@@ -98,6 +107,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.anchor = GridBagConstraints.WEST;
 		add(PF_password,gbc);
+		PF_password.addKeyListener(this);
 
 		BT_login = new JButton("Iniciar Sesion");
 		gbc.gridx = 0;
@@ -126,25 +136,89 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		setVisible(true);
 	}
 	
-	public void ShowTasksByProjectScreen(List<Project> userProjects) {
+	public void ShowHome(){
+		LimpiarVista();
+		getContentPane().setBackground(Color.YELLOW);
+		// Menu
+		BT_LogOut = new JButton("Cerrar Sesion");
+		gbc.gridx = 3;
+		gbc.gridy = 3;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		MB_menu = new JMenuBar();
+		setJMenuBar(MB_menu);
+		MN_vistas = new JMenu("Vistas");
+		MB_menu.add(MN_vistas);
+		MI_vista1 = new JMenuItem("Ver tareas por proyecto");
+		MI_vista1.addActionListener(this);
+		MN_vistas.add(MI_vista1);
+		MI_vista2 = new JMenuItem("Ver usuarios por proyecto");
+		MI_vista2.addActionListener(this);
+		MN_vistas.add(MI_vista2);
+		add(BT_LogOut,gbc);
+		MB_menu.add(BT_LogOut);
+		BT_LogOut.addActionListener(this);
+		//Home
+		JLabel LB_Home= new JLabel("HOME");
+		LB_Home.setFont(new Font("Serif", Font.ITALIC, 100));
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		LB_Home.setAlignmentX(TOP_ALIGNMENT);
+		add(LB_Home,gbc);
 		
-		/* Primero borramos todos los elementos de la vista de login */
-		remove(LB_email);
-		remove(TF_email);
-		remove(LB_password);
-		remove(PF_password);
-		remove(BT_login);
-		remove(LB_incorrect_password);
-		remove(LB_bienvenido);
+		JLabel Bienvenida= new JLabel("Bienvenido "+ Main.user.getEmail());
+		LB_Home.setFont(new Font("Serif", Font.ITALIC, 60));
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		LB_Home.setAlignmentX(TOP_ALIGNMENT);
+		add(Bienvenida,gbc);
+		
+		setVisible(true);
+	
+	}
+	public void LimpiarVista(){
+	    MB_menu.removeAll();
+		getContentPane().removeAll();
 		revalidate();
 		repaint();
+	}
+	public void ShowTasksByProjectScreen(List<Project> userProjects) {
+		LimpiarVista();
+		/* Primero borramos todos los elementos de la vista de login */
+		
 		
 		/*Ahora cargamos los elementos de esta vista */
 		
 		/* Primero cargamos el menu superior */
+		BT_LogOut = new JButton("Cerrar Sesion");
+		gbc.gridx = 3;
+		gbc.gridy = 3;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		add(BT_LogOut,gbc);
+		BT_LogOut.addActionListener(this);
 		MB_menu = new JMenuBar();
 		setJMenuBar(MB_menu);
 		MN_vistas = new JMenu("Vistas");
+		MB_menu.add(BT_LogOut);
 		MB_menu.add(MN_vistas);
 		MI_vista1 = new JMenuItem("Ver tareas por proyecto");
 		MI_vista1.addActionListener(this);
@@ -179,6 +253,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 				
 		
 		TB_tasks = new JTable();
+		TB_tasks.disable();
 		SP_tasks = new JScrollPane(TB_tasks);
 		
 		gbc.gridx = 1;
@@ -218,12 +293,17 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		/* Handler del primer item de la pestaña vistas del menu superior */
 		if(e.getSource() == MI_vista1) {
-			
+			ShowTasksByProjectScreen(Main.user.getProjects());
 		}
+		
 		
 		/* Handler del segundo item de la pestaña vistas del menu superior */
 		if(e.getSource() == MI_vista2) {
 			
+		}
+		if(e.getSource()==BT_LogOut){
+			LimpiarVista();
+			ShowLoginScreen();
 		}
 	}
 	
@@ -260,6 +340,35 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			
 			setVisible(true);
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()== KeyEvent.VK_ENTER){
+			
+			if(Main.searcher.ValidateUser(TF_email.getText(), PF_password.getPassword())){
+				Main.LogInUser(TF_email.getText(), new String(PF_password.getPassword()));
+			}
+			else{
+				add(LB_incorrect_password,gbc);
+				setVisible(true);
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
