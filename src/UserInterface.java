@@ -21,6 +21,15 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JLabel LB_password;
 	JPasswordField PF_password;
 	JButton BT_login;
+	JButton BT_signUp;
+	JLabel LB_emailSU;
+	JTextField TF_emailSU;
+	JLabel LB_passwordSU;
+	JPasswordField PF_passwordSU;
+	JButton BT_signUpSU;
+	JLabel LB_incorrect_userSU;
+	JLabel LB_userDoneSU;
+	JButton BT_goToSignInScreen;
 	JLabel LB_incorrect_password;
 	JButton BT_LogOut;
 	//Menu de arriba
@@ -40,7 +49,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	
 	public UserInterface() {
 		super("Task Manager");
-		
 	}
 	
 	public void ShowLoginScreen(){
@@ -48,6 +56,8 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		getContentPane().setBackground(Color.YELLOW);
+		
 		grid = new GridBagLayout();
 		gbc = new GridBagConstraints();
 		setLayout(grid);
@@ -56,7 +66,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		LB_bienvenido.setFont(new Font("Serif", Font.PLAIN, 25));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
@@ -133,6 +143,19 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.WEST;
 		
+		BT_signUp = new JButton("Registrarse");
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 2;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		add(BT_signUp,gbc);
+		
+		BT_signUp.addActionListener(this);
+		
 		setVisible(true);
 	}
 	
@@ -190,12 +213,14 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		setVisible(true);
 	
 	}
+	
 	public void LimpiarVista(){
 	    MB_menu.removeAll();
 		getContentPane().removeAll();
 		revalidate();
 		repaint();
 	}
+	
 	public void ShowTasksByProjectScreen(List<Project> userProjects) {
 		LimpiarVista();
 		/* Primero borramos todos los elementos de la vista de login */
@@ -271,6 +296,87 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 	}
 	
+	public void ShowSignUpScreen(){
+		LB_emailSU = new JLabel("Ingresar Email");
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.WEST;
+		add(LB_emailSU,gbc);
+				
+		TF_emailSU = new JTextField(30);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.WEST;
+		add(TF_emailSU,gbc);
+		TF_emailSU.addKeyListener(this);
+		
+		LB_passwordSU = new JLabel("Ingresar Password: ");
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.WEST;
+		add(LB_passwordSU,gbc);
+
+		PF_passwordSU = new JPasswordField(30);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.WEST;
+		add(PF_passwordSU,gbc);
+		PF_passwordSU.addKeyListener(this);
+
+		BT_signUpSU = new JButton("Registrarse");
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		add(BT_signUpSU,gbc);
+		
+		BT_signUpSU.addActionListener(this);
+		
+		LB_incorrect_userSU = new JLabel("*Usuario ya existe o contraseña ingresada posee menos de 4 digitos, reintente.");
+				
+		LB_userDoneSU = new JLabel("Felicitaciones! El usuario ha sido creado correctamente.");
+		
+		BT_goToSignInScreen = new JButton("Ir al Inicio de Sesión");
+		gbc.gridx = 3;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 2;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.CENTER;
+		add(BT_goToSignInScreen,gbc);
+				
+		BT_goToSignInScreen.addActionListener(this);
+		
+		
+		setVisible(true);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		
 		/* Handler del boton de log in */
@@ -291,11 +397,79 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			}
 		}
 		
+		/* Handler del boton de signup */
+		if(e.getSource() == BT_signUp) {
+			LimpiarVista();
+			ShowSignUpScreen();
+		}
+			
+		/* Handler del boton de signUp de la vista de registro */
+		if(e.getSource() == BT_signUpSU){
+			remove(LB_incorrect_userSU);
+			revalidate();
+			repaint();
+			
+			String pass = new String(PF_passwordSU.getPassword());
+			
+			/* Si el usuario no esta ocupado y la contraseña tiene mas de 3 caracteres 
+			 * entonces se crea en la BDD y se muestra un mensaje y un boton para ir a loginScreen */
+			if(Main.searcher.ValidateUser(TF_emailSU.getText()) == false && pass.length()>3){
+				Main.searcher.addNewUser(new User(TF_emailSU.getText(), pass));
+				LimpiarVista();
+				grid = new GridBagLayout();
+				gbc = new GridBagConstraints();
+				setLayout(grid);
+				
+				gbc.gridx = 0;
+				gbc.gridy = 0;
+				gbc.gridwidth = 2;
+				gbc.gridheight = 1;
+				gbc.weightx = 0.0;
+				gbc.weighty = 0.0;
+				gbc.fill = GridBagConstraints.HORIZONTAL;
+				gbc.anchor = GridBagConstraints.WEST;
+				add(LB_userDoneSU, gbc);
+				
+				gbc.gridx = 0;
+				gbc.gridy = 1;
+				gbc.gridwidth = 2;
+				gbc.gridheight = 1;
+				gbc.weightx = 0.0;
+				gbc.weighty = 0.0;
+				gbc.fill = GridBagConstraints.HORIZONTAL;
+				gbc.anchor = GridBagConstraints.CENTER;
+				add(BT_goToSignInScreen, gbc);
+				
+				setVisible(true);
+			}
+			
+			/* Si el usuario ya existe o la contraseña tiene menos de 4 caracteres entonces
+			 * se muestra un mensaje */
+			else{
+				LB_incorrect_userSU.setForeground(Color.red);
+				gbc.gridx = 0;
+				gbc.gridy = 5;
+				gbc.gridwidth = 2;
+				gbc.gridheight = 1;
+				gbc.weightx = 0.0;
+				gbc.weighty = 0.0;
+				gbc.fill = GridBagConstraints.HORIZONTAL;
+				gbc.anchor = GridBagConstraints.WEST;
+				
+				add(LB_incorrect_userSU,gbc);
+				setVisible(true);
+			}
+		}
+		
+		if(e.getSource() == BT_goToSignInScreen){
+			LimpiarVista();
+			ShowLoginScreen();
+		}
+		
 		/* Handler del primer item de la pestaña vistas del menu superior */
 		if(e.getSource() == MI_vista1) {
 			ShowTasksByProjectScreen(Main.user.getProjects());
 		}
-		
 		
 		/* Handler del segundo item de la pestaña vistas del menu superior */
 		if(e.getSource() == MI_vista2) {
