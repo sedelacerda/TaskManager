@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.List;
 
 public class Task {
 	
@@ -9,7 +8,7 @@ public class Task {
 	private State currentState;
 	private Date deadline;
 	private User currentResponsible;
-	private ArrayList<User> currentExecutors;
+	private ArrayList<User> currentExecutors = new ArrayList<User>();
 	private Project project;
 	
 	/* Constructores */
@@ -23,7 +22,6 @@ public class Task {
 		this.project = tasks_project;
 		this.deadline = task_deadline;
 		this.currentState = task_state;
-		currentExecutors = new ArrayList<User>();
 	}
 
 	public Task(String task_description, String task_context, Project tasks_project, Date task_deadline) {
@@ -99,12 +97,22 @@ public class Task {
 		currentExecutors.remove(executor_to_remove);
 	}
 	
-	public int getTID(){
-		return this.TID;
+	public List<User> getExecutors()
+	{
+		return currentExecutors;
 	}
 	
-	public List<User> getExecutors(){
-		return currentExecutors;
+	public int getNumberExecutors()
+	{
+		return currentExecutors.size();
+	}
+
+	public void setTID(int new_TID){
+		TID = new_TID;		
+	}
+	
+	public int getTID(){
+		return this.TID;
 	}
 	
 	
