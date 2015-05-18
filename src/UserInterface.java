@@ -50,7 +50,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JScrollPane SP_tasks ;
 	int vista = 0;
 	
-	//Agregar tarea
+	//CRUD tarea
 	JLabel LB_Description;
 	JTextField TF_Description;
 	JLabel LB_Context;
@@ -59,6 +59,8 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JTextField TF_DLine;
 	JButton BT_CreateSU;
 	Project CurrentProject;
+	JTextField TF_Remove;
+	JButton BT_Remove;
 		
 	public UserInterface() {
 		super("Task Manager");
@@ -235,7 +237,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	}
 	
 	public void ShowTasksByProjectScreen(List<Project> userProjects) {
-
+		
 		vista = 0;
 		/* Primero borramos todos los elementos de la vista de login */
 		LimpiarVista();
@@ -268,6 +270,12 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		add(BT_AddTask,gbc);
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
+		TF_Remove = new JTextField(8);
+		MB_menu.add(TF_Remove);
+		BT_Remove = new JButton("Remover tarea");
+		add(BT_Remove,gbc);
+		MB_menu.add(BT_Remove);
+		BT_Remove.addActionListener(this);
 		BT_LogOut = new JButton("Cerrar Sesion");
 		add(BT_LogOut,gbc);
 		MB_menu.add(BT_LogOut);
@@ -316,8 +324,9 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 	}
 	
-public void ShowUsersByProjectScreen(List<Project> userProjects) {
+    public void ShowUsersByProjectScreen(List<Project> userProjects) {
 		
+    	
 		vista = 1;
 		
 		/* Primero borramos todos los elementos de la vista de login */
@@ -351,6 +360,12 @@ public void ShowUsersByProjectScreen(List<Project> userProjects) {
 		add(BT_AddTask,gbc);
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
+		TF_Remove = new JTextField(8);
+		MB_menu.add(TF_Remove);
+		BT_Remove = new JButton("Remover tarea");
+		add(BT_Remove,gbc);
+		MB_menu.add(BT_Remove);
+		BT_Remove.addActionListener(this);
 		BT_LogOut = new JButton("Cerrar Sesion");
 		add(BT_LogOut,gbc);
 		MB_menu.add(BT_LogOut);
@@ -480,7 +495,7 @@ public void ShowUsersByProjectScreen(List<Project> userProjects) {
 		setVisible(true);
 	}
 	
-public void ShowAddTaskScreen(){
+    public void ShowAddTaskScreen(){
 		
 		LB_Description = new JLabel("Ingresar Descripcion:");
 		gbc.gridx = 0;
@@ -649,9 +664,22 @@ public void ShowAddTaskScreen(){
 			ShowAddTaskScreen();
 		}	
 		
+		if(e.getSource()==BT_Remove){
+			Main.searcher.removeTask( Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(Integer.parseInt(TF_Remove.getText())-1));
+			TF_Remove.setText("");
+			
+			String emailaux = Main.user.getEmail();
+			String passaux = Main.user.getPassword();
+			
+			Main.user.LogOut();					
+			Main.LogInUser(emailaux,passaux);
+			
+			ShowTasksByProjectScreen(Main.user.getProjects());
+		}	
+		
 		if(e.getSource()==BT_CreateSU){
 			LimpiarVista();
-			ShowTasksByProjectScreen(Main.user.getProjects());
+			
 			Random ra = new Random();
 			int n = 10000000 + ra.nextInt(90000000);
 			CurrentProject= Main.user.getProjects().get(LS_projects.getSelectedIndex());
@@ -664,7 +692,15 @@ public void ShowAddTaskScreen(){
 			NewTask.AddExecutor(Main.user);
 			NewTask.setDeadline(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(0).getDeadline());
 			
-			Main.searcher.addNewTask(NewTask);
+			Main.searcher.addNewTask(NewTask);		
+			
+			String emailaux = Main.user.getEmail();
+			String passaux = Main.user.getPassword();
+			
+			Main.user.LogOut();
+			Main.LogInUser(emailaux,passaux);
+
+			ShowTasksByProjectScreen(Main.user.getProjects());
 		}	
 				
 		if(e.getSource()==BT_LogOut){
@@ -678,18 +714,19 @@ public void ShowAddTaskScreen(){
 		if (vista == 0)
 		{
 			if(e.getSource() == LS_projects){
-				String[] columnNames = {"Description", "Context", "State", "Deadline"};
+				String[] columnNames = {"Description", "Context", "State", "Deadline", "TID"};
 				int ntasks = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().size();
 				Object[][] data = new Object[ntasks][];
 				
 				DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 				
 				for(int i = 0;i<ntasks;i++){
-					data[i] = new Object[4];
+					data[i] = new Object[5];
 					data[i][0] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getDescription();
 					data[i][1] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getContext();
 					data[i][2] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getState();
 					data[i][3] = df.format(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getDeadline());
+					data[i][4] = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(i).getTID();
 				}
 			
 				TB_tasks = new JTable(data, columnNames);
