@@ -9,7 +9,7 @@ public class Task {
 	private State currentState;
 	private Date deadline;
 	private User currentResponsible;
-	private List<User> currentExecutors;
+	private ArrayList<User> currentExecutors;
 	private Project project;
 	
 	/* Constructores */
@@ -23,6 +23,7 @@ public class Task {
 		this.project = tasks_project;
 		this.deadline = task_deadline;
 		this.currentState = task_state;
+		currentExecutors = new ArrayList<User>();
 	}
 
 	public Task(String task_description, String task_context, Project tasks_project, Date task_deadline) {

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class Main {
 
@@ -9,13 +11,14 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		searcher.loadMainData();
-		
+				
 		ui = new UserInterface();
 		ui.ShowLoginScreen();
 	}
 	
 	public static void LogInUser(String user_email, String user_password) {
 		user = new User(user_email, user_password);
+		
 		user.LogIn();
 		ui.ShowHome();
 	}

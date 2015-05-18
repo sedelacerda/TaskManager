@@ -23,9 +23,11 @@ import javax.xml.transform.stream.StreamResult;
 
 public class Searcher {
 
+	/* Las siguientes 3 colecciones contendran toda la data que hay en la base de datos */
 	ArrayList<ArrayList<ArrayList<String>>> Users = new ArrayList<ArrayList<ArrayList<String>>>();
 	ArrayList<ArrayList<ArrayList<String>>> Projects = new ArrayList<ArrayList<ArrayList<String>>>();
 	ArrayList<ArrayList<ArrayList<String>>> Tasks = new ArrayList<ArrayList<ArrayList<String>>>();
+	ArrayList<ArrayList<ArrayList<String>>> Notifications = new ArrayList<ArrayList<ArrayList<String>>>();
 	
 	public void loadMainData(){
 		loadUsers();
@@ -90,15 +92,6 @@ public class Searcher {
 				}
 			}
 			
-			/*
-			for(ArrayList<ArrayList<String>> u : Users){
-				for(ArrayList<String> s : u){
-					for(String i : s){
-						System.out.println(i);
-					}
-				}
-			}
-			*/
 		}
 		
 		catch(Exception e){
@@ -225,6 +218,64 @@ public class Searcher {
 					Tasks.add(taskData);
 				}
 			}		
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadNotifications(){
+
+		Notifications = new ArrayList<ArrayList<ArrayList<String>>>();
+		
+		try{
+			File fXmlFile = new File("../TaskManager/Data Files/Notifications.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+			
+			doc.getDocumentElement().normalize();
+			
+			NodeList nList = doc.getElementsByTagName("Notification");
+			
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				 
+				Node nNode = nList.item(temp);
+				
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		 
+					Element eElement = (Element) nNode;
+					
+					//Primero sacamos los receptors de cada notificacion			
+					ArrayList<String> receptors = new ArrayList<String>();
+					NodeList nList2 = doc.getElementsByTagName("Receptors");
+					Node nNode2 = nList2.item(temp);
+					
+					if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
+						
+						Element eElement2 = (Element) nNode2;
+						
+						for(int i=0; i<eElement2.getElementsByTagName("Receptor").getLength(); i++){
+							
+							receptors.add(eElement2.getElementsByTagName("Receptor").item(i).getTextContent());
+							/* Ya tenemos los Receptors*/							
+						}
+					}
+					
+					//Ahora sacamos el creator
+					ArrayList<ArrayList<String>> notifData = new ArrayList<ArrayList<String>>();
+					notifData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Creator").item(0).getTextContent());}});
+					//Ahora le agregamos la lista de los receptores
+					notifData.add(receptors);
+					//Ahora el mensaje
+					notifData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Message").item(0).getTextContent());}});
+					
+					
+					//Finalmente agregamos la nueva notification al arraylist Notifications
+					Notifications.add(notifData);
+				}
+			}
 		}
 		
 		catch(Exception e){
@@ -384,6 +435,53 @@ public class Searcher {
 		}
 	}
 	
+	public void saveNotificationsToXML(){
+		try{
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.newDocument();
+			
+			Element rootElement = doc.createElement("Notifications");
+			
+			doc.appendChild(rootElement);
+			
+			for(int i=0; i<Notifications.size(); i++){	//for para recorrer cada notification
+				Element elem2 = doc.createElement("Notification");
+				
+				Element elem3 = doc.createElement("Creator");
+				elem3.appendChild(doc.createTextNode(""+Notifications.get(i).get(0).get(0)));
+																
+				Element elem4 = doc.createElement("Receptors");
+				
+				for(int k=0; k<Tasks.get(i).get(6).size(); k++){	//for para recorrer los executors
+					Element elem5 = doc.createElement("Receptor");
+					elem5.appendChild(doc.createTextNode(""+Notifications.get(i).get(1).get(k)));
+					elem4.appendChild(elem5);
+				}
+				
+				Element elem6 = doc.createElement("Message");
+				elem6.appendChild(doc.createTextNode(""+Notifications.get(i).get(2).get(0)));
+				
+				elem2.appendChild(elem3);		//agregamos Creator a Notification
+				elem2.appendChild(elem4);		//agregamos Receptors a Notification
+				elem2.appendChild(elem6);		//agregamos Message a Notification
+				rootElement.appendChild(elem2);	//agregamos Notification a Notifications
+			}
+			
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File("../TaskManager/Data Files/Notifications.xml"));
+			transformer.transform(source, result);
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public boolean ValidateUser(String user_email, char[] user_password){
 		
 		boolean output = false;
@@ -436,6 +534,10 @@ public class Searcher {
 										}catch(ParseException e){}
 										
 										Task tas = new Task(Integer.parseInt(task.get(0).get(0)), task.get(1).get(0), task.get(2).get(0), State.valueOf(task.get(3).get(0)), date, proj);
+										tas.setResponsible(new User(task.get(5).get(0),""));
+										for(String exec : task.get(6)){
+											tas.AddExecutor(new User(exec, ""));
+										}
 										proj.AddTask(tas);
 									}
 								}
@@ -448,7 +550,6 @@ public class Searcher {
 				break;	//solo puede calzar con un usuario
 			}
 		}
-		
 	}
 
 	public void addNewUser(User user){
@@ -464,19 +565,9 @@ public class Searcher {
 		newUser.add(pids);
 		
 		Users.add(newUser);
-		
-		for(ArrayList<ArrayList<String>> userm : Users){
-			
-			for(ArrayList<String> col : userm){
-				for(String item : col){
-					System.out.println(item);
-				}
-			}
-		}
-		
+				
 		saveUsersToXML();	//actualizamos la base
 		loadUsers();
-		
 	}
 	
 	public void addNewProject(Project project){
@@ -520,5 +611,55 @@ public class Searcher {
 		loadTasks();
 	}
 	
+	public void removeProject(Project project){
+		
+		for(int i=0; i<Projects.size(); i++){
+			if(Projects.get(i).get(0).get(0).equals(""+project.getPID())){
+				Projects.remove(i);
+			}
+		}
+		
+		saveProjectsToXML();
+		loadProjects();
+	}
+
+	public void removeTask(Task task){
+		for(int i=0; i<Tasks.size(); i++){
+			if(Tasks.get(i).get(0).get(0).equals(""+task.getTID())){
+				Tasks.remove(i);
+			}
+		}
+		
+		saveTasksToXML();
+		loadTasks();
+	}
+
+	public void updateProject(Project project){	//no se pueden modificar los PID
+		
+		removeProject(project);	//lo borramos
+		addNewProject(project);	//lo volvemos a crear
+	}
 	
+	public void updateTask(Task task){
+		removeTask(task);	//la borramos
+		addNewTask(task);	//la volvemos a crear
+	}
+	
+	public void addNewNotification(Notification notification){
+		ArrayList<ArrayList<String>> newNot = new ArrayList<ArrayList<String>>();
+		ArrayList<String> receptors = new ArrayList<String>();
+		
+		for(User receptor : notification.getReceptors()){
+			receptors.add(receptor.getEmail());
+		}
+		
+		newNot.add(new ArrayList<String>(){{add(notification.getCreator().getEmail());}});
+		newNot.add(receptors);
+		newNot.add(new ArrayList<String>(){{add(notification.getMessage());}});
+		
+		Notifications.add(newNot);
+				
+		saveNotificationsToXML();	//actualizamos la base
+		loadNotifications();
+	}
 }

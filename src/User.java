@@ -30,7 +30,7 @@ public class User {
 	}
 	
 	public void LogOut() {
-		
+		Main.user = new User("","");	//se borran los datos del usuario
 	}
 	
 	public void AddProject(Project new_project) {
@@ -53,5 +53,4 @@ public class User {
 	public Project getProjectByID(int project_id){
 		return projectByID.get(project_id);
 	}
-	
 }
