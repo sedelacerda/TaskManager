@@ -710,8 +710,10 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			NewTask.setDeadline(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(0).getDeadline());
 			NewTask.AddExecutor(Main.user);
 			
+			Main.user.getProjects().get(LS_projects.getSelectedIndex()).AddTask(NewTask);			
 			Main.searcher.addNewTask(NewTask);	
-			Main.user.getProjects().get(LS_projects.getSelectedIndex()).AddTask(NewTask);
+			Main.searcher.saveProjectsToXML();
+			Main.searcher.loadProjects();
 			
 			
 			String emailaux = Main.user.getEmail();
