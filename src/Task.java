@@ -37,7 +37,8 @@ public class Task {
 	}
 	
 	public Task(String task_description, String task_context) {
-		
+		this.description = task_description;
+		this.context = task_context;
 	}
 	
 	/* Public methods */

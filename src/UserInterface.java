@@ -3,6 +3,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.text.DateFormat;
 import java.util.List;
@@ -271,6 +273,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
 		TF_Remove = new JTextField(8);
+		TF_Remove.setText("Ej: El número 2 elimina la segunda de la lista");
 		MB_menu.add(TF_Remove);
 		BT_Remove = new JButton("Remover tarea");
 		add(BT_Remove,gbc);
@@ -361,6 +364,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
 		TF_Remove = new JTextField(8);
+		TF_Remove.setText("Ej: El número 2 elimina la segunda de la lista");
 		MB_menu.add(TF_Remove);
 		BT_Remove = new JButton("Remover tarea");
 		add(BT_Remove,gbc);
@@ -496,10 +500,21 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	}
 	
     public void ShowAddTaskScreen(){
+    	
+    	JLabel LB_Nota= new JLabel("Solo las agrega al xml momentaniamente, no se ve en el programa");
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 0.0;
+		gbc.weighty = 0.0;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		LB_Nota.setAlignmentX(TOP_ALIGNMENT);
+		add(LB_Nota,gbc);
 		
 		LB_Description = new JLabel("Ingresar Descripcion:");
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -510,7 +525,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 				
 		TF_Description = new JTextField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -522,7 +537,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		LB_Context = new JLabel("Ingresar Contexto:");
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -533,7 +548,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 				
 		TF_Context = new JTextField(30);
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -545,7 +560,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		BT_CreateSU = new JButton("Crear");
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
@@ -666,7 +681,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		if(e.getSource()==BT_Remove){
 			Main.searcher.removeTask( Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(Integer.parseInt(TF_Remove.getText())-1));
-			TF_Remove.setText("");
+			TF_Remove.setText("Ej: El número 2 elimina la segunda de la lista");
 			
 			String emailaux = Main.user.getEmail();
 			String passaux = Main.user.getPassword();
@@ -683,16 +698,21 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			Random ra = new Random();
 			int n = 10000000 + ra.nextInt(90000000);
 			CurrentProject= Main.user.getProjects().get(LS_projects.getSelectedIndex());
+			String descr = TF_Description.getText();
+			String cont = TF_Context.getText();
+						
+			Task NewTask = new Task(descr, cont);
 			
-			Task NewTask = new Task(TF_Description.getText(), TF_Context.getText());
 			NewTask.setProject(CurrentProject);
 			NewTask.setTID(n);
 			NewTask.setState(State.ACTIVE);
 			NewTask.setResponsible(Main.user);
-			NewTask.AddExecutor(Main.user);
 			NewTask.setDeadline(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(0).getDeadline());
+			NewTask.AddExecutor(Main.user);
 			
-			Main.searcher.addNewTask(NewTask);		
+			Main.searcher.addNewTask(NewTask);	
+			Main.user.getProjects().get(LS_projects.getSelectedIndex()).AddTask(NewTask);
+			
 			
 			String emailaux = Main.user.getEmail();
 			String passaux = Main.user.getPassword();
