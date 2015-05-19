@@ -137,9 +137,9 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		PF_password.addKeyListener(this);
 
 		BT_login = new JButton("Iniciar Sesion");
-		gbc.gridx = 0;
+		gbc.gridx = 1;
 		gbc.gridy = 3;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
@@ -150,21 +150,22 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		BT_login.addActionListener(this);
 		
 		LB_incorrect_password = new JLabel("*Usuario y/o contraseña inválidos, intente de nuevo.");
-		LB_incorrect_password.setForeground(Color.red);
+		LB_incorrect_password.setForeground(Color.gray);
 		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.gridwidth = 2;
-		gbc.gridheight = 2;
+		gbc.gridy = 5;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.WEST;
+		add(LB_incorrect_password,gbc);
 		
 		BT_signUp = new JButton("Registrarse");
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.gridheight = 2;
+		gbc.gridheight = 1;
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -578,7 +579,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		/* Handler del boton de log in */
 		if(e.getSource() == BT_login) {
-			remove(LB_incorrect_password);
+			LB_incorrect_password.setForeground(Color.gray);
 			revalidate();
 			repaint();
 			
@@ -589,7 +590,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			
 			/* Si el usuario y/o contraseña son incorrectos entonces se muestra un mensaje en pantalla */
 			else{
-				add(LB_incorrect_password,gbc);
+				LB_incorrect_password.setForeground(Color.red);
 				setVisible(true);
 			}
 		}
