@@ -1,22 +1,21 @@
 import java.util.*;
-import java.util.List;
 
 public class Task {
 	
 	private int TID;
-	private Project project;
-	private Date deadline;
-	private State currentState;
 	private String description;
 	private String context;
+	private State currentState;
+	private Date deadline;
 	private User currentResponsible;
-	private List<User> currentExecutors;
+	private ArrayList<User> currentExecutors = new ArrayList<User>();
+	private Project project;
 	
 	/* Constructores */
 	/* Para mayor flexibilidad se establece varios tipos de constructores */
 	
 
-	public Task(int task_id, String task_description, String task_context, Project tasks_project, Date task_deadline, State task_state) {
+	public Task(int task_id, String task_description, String task_context, State task_state, Date task_deadline, Project tasks_project) {
 		this.TID = task_id;
 		this.description = task_description;
 		this.context = task_context;
@@ -38,7 +37,8 @@ public class Task {
 	}
 	
 	public Task(String task_description, String task_context) {
-		
+		this.description = task_description;
+		this.context = task_context;
 	}
 	
 	/* Public methods */
@@ -96,6 +96,24 @@ public class Task {
 	
 	public void RemoveExecutor(User executor_to_remove) {
 		currentExecutors.remove(executor_to_remove);
+	}
+	
+	public List<User> getExecutors()
+	{
+		return currentExecutors;
+	}
+	
+	public int getNumberExecutors()
+	{
+		return currentExecutors.size();
+	}
+
+	public void setTID(int new_TID){
+		TID = new_TID;		
+	}
+	
+	public int getTID(){
+		return this.TID;
 	}
 	
 	

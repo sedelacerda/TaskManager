@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Notifications>
+    <Notification>
+        <Creator>sedelacerda@uc.cl</Creator>
+        <Receptors>
+            <Receptor>pjdonoso@uc.cl</Receptor>
+        </Receptors>
+        <Message>Esta quedando bueno</Message>
+    </Notification>
+</Notifications>
