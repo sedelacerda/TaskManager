@@ -11,9 +11,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		searcher.loadMainData();
-				
+		
 		ui = new UserInterface();
 		ui.ShowLoginScreen();
+		LogInUser("sedelacerda@uc.cl","qwerty");
 	}
 	
 	public static void LogInUser(String user_email, String user_password) {

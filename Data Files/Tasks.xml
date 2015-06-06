@@ -12,18 +12,6 @@
         </Executors>
     </Task>
     <Task>
-        <TID>11120000</TID>
-        <Description>Tarea2</Description>
-        <Context>En la oficina</Context>
-        <State>ACTIVE</State>
-        <Deadline>20-05-2015</Deadline>
-        <Responsible>sedelacerda@uc.cl</Responsible>
-        <Executors>
-            <Email>sedelacerda@uc.cl</Email>
-            <Email>pjdonoso@uc.cl</Email>
-        </Executors>
-    </Task>
-    <Task>
         <TID>11130000</TID>
         <Description>Tarea3</Description>
         <Context>En la oficina</Context>
@@ -44,19 +32,6 @@
         <Deadline>01-05-2015</Deadline>
         <Responsible>sedelacerda@uc.cl</Responsible>
         <Executors>
-            <Email>sedelacerda@uc.cl</Email>
-            <Email>jmleighton@uc.cl</Email>
-        </Executors>
-    </Task>
-    <Task>
-        <TID>11150000</TID>
-        <Description>Tarea5</Description>
-        <Context>En el auto</Context>
-        <State>ACTIVE</State>
-        <Deadline>05-05-2015</Deadline>
-        <Responsible>pjdonoso@uc.cl</Responsible>
-        <Executors>
-            <Email>pjdonoso@uc.cl</Email>
             <Email>sedelacerda@uc.cl</Email>
             <Email>jmleighton@uc.cl</Email>
         </Executors>
@@ -138,6 +113,239 @@
         <State>ACTIVE</State>
         <Deadline>01-05-2015</Deadline>
         <Responsible>jmleighton@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>57474100</TID>
+        <Description>Dono gay</Description>
+        <Context>muuuuy gay</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon May 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>50363765</TID>
+        <Description>ollL</Description>
+        <Context>contextooo</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Apr 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>82873542</TID>
+        <Description>asd</Description>
+        <Context>asd</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon May 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>42560565</TID>
+        <Description>qwer</Description>
+        <Context>ofic</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon May 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>78327404</TID>
+        <Description>prueba2</Description>
+        <Context>alfin</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Apr 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>35222197</TID>
+        <Description>hola</Description>
+        <Context>chao</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon May 25 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>86021145</TID>
+        <Description>Tarea1000</Description>
+        <Context>En el auto</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>soytu@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>59489743</TID>
+        <Description>tarea200</Description>
+        <Context>En el auto</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>25391270</TID>
+        <Description>tarea342</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Tue Jun 09 00:00:00 ART 2015</Deadline>
+        <Responsible>pjdonoso@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>13792891</TID>
+        <Description>Mia</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Wed Sep 06 00:00:00 ART 2017</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+            <Email>pjdonoso@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>84511027</TID>
+        <Description>sadfzsdf</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>sedelacerda@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>27265281</TID>
+        <Description>unamas</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>12036075</TID>
+        <Description>ahora si</Description>
+        <Context>En la oficina</Context>
+        <State>FROZEN</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>38466779</TID>
+        <Description>vamos</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sun Aug 23 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>44475956</TID>
+        <Description>holaaaaaaaa</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>57035664</TID>
+        <Description>siiii</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>88448093</TID>
+        <Description>Ultima</Description>
+        <Context>En la oficina</Context>
+        <State>FROZEN</State>
+        <Deadline>Mon Jun 08 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>89116674</TID>
+        <Description>ahora si</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>76002203</TID>
+        <Description>una al proyecto 2</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sun Sep 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>soytu@uc.cl</Email>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>41799197</TID>
+        <Description>wiii</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>41436180</TID>
+        <Description>Tare234</Description>
+        <Context>En el auto</Context>
+        <State>FROZEN</State>
+        <Deadline>Sat Jun 06 00:00:00 ART 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
         <Executors>
             <Email>jmleighton@uc.cl</Email>
         </Executors>
