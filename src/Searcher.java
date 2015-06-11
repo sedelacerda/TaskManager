@@ -589,7 +589,38 @@ public class Searcher {
 		loadProjects();
 	}
 	
-	public void addNewTask(Task task){
+	/**El siguiente metodo guarda la nueva tarea en el archivo tasks y ademas guarda una referencia
+	 * de esta en el project entregado
+	 * @param proj
+	 * @param task
+	 */
+	public void addNewTask(Project proj, Task task){
+		ArrayList<ArrayList<String>> newTask = new ArrayList<ArrayList<String>>();
+		ArrayList<String> executors = new ArrayList<String>();
+		
+		for(User exec : task.getExecutors()){
+			executors.add(exec.getEmail());
+		}
+		
+		newTask.add(new ArrayList<String>(){{add(""+task.getTID());}});
+		newTask.add(new ArrayList<String>(){{add(task.getDescription());}});
+		newTask.add(new ArrayList<String>(){{add(task.getContext());}});
+		newTask.add(new ArrayList<String>(){{add(task.getState().toString().toUpperCase());}});
+		newTask.add(new ArrayList<String>(){{add(task.getDeadline().toString());}});
+		newTask.add(new ArrayList<String>(){{add(task.getResponsible().getEmail());}});
+		newTask.add(executors);
+		
+		Tasks.add(newTask);
+		saveTasksToXML();
+		loadTasks();
+		
+		
+		updateProject(proj);
+		
+	}
+	
+	/**El siguiente metodo guarda la tarea en si en el xml de tasks, solo la tarea sin la referencia al project */
+	private void addNewTask(Task task){
 		ArrayList<ArrayList<String>> newTask = new ArrayList<ArrayList<String>>();
 		ArrayList<String> executors = new ArrayList<String>();
 		
@@ -661,5 +692,9 @@ public class Searcher {
 				
 		saveNotificationsToXML();	//actualizamos la base
 		loadNotifications();
+	}
+
+	public ArrayList<ArrayList<ArrayList<String>>> getAllUsers(){
+		return Users;
 	}
 }

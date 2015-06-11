@@ -41,6 +41,8 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JMenu MN_vistas;
 	JMenuItem MI_vista1;
 	JMenuItem MI_vista2;
+	JTextField TF_Remove;
+	JButton BT_Remove;
 	//Home
 	
 	//Tareas por proyecto y proyectos por usuario
@@ -52,17 +54,8 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	JScrollPane SP_tasks ;
 	int vista = 0;
 	
-	//CRUD tarea
-	JLabel LB_Description;
-	JTextField TF_Description;
-	JLabel LB_Context;
-	JTextField TF_Context;
-	JLabel LB_DLine;
-	JTextField TF_DLine;
-	JButton BT_CreateSU;
+	JButton BT_CreateNewTask;
 	Project CurrentProject;
-	JTextField TF_Remove;
-	JButton BT_Remove;
 		
 	public UserInterface() {
 		super("Task Manager");
@@ -269,7 +262,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		MI_vista2 = new JMenuItem("Ver usuarios por proyecto");
 		MI_vista2.addActionListener(this);
 		MN_vistas.add(MI_vista2);
-		BT_AddTask = new JButton("Agregar tarea");
+		BT_AddTask = new JButton("Agregar tarea a proyecto");
 		add(BT_AddTask,gbc);
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
@@ -295,7 +288,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		LS_projects = new JList(projectsDescription);
 		LS_projects.addListSelectionListener(this);
-		LS_projects.setSelectedIndex(0);
 		SP_projects = new JScrollPane(LS_projects);
 		
 		gbc.gridx = 0;
@@ -364,13 +356,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		add(BT_AddTask,gbc);
 		MB_menu.add(BT_AddTask);
 		BT_AddTask.addActionListener(this);
-		TF_Remove = new JTextField(8);
-		TF_Remove.setText("Ej: El número 2 elimina la segunda de la lista");
-		MB_menu.add(TF_Remove);
-		BT_Remove = new JButton("Remover tarea");
-		add(BT_Remove,gbc);
-		MB_menu.add(BT_Remove);
-		BT_Remove.addActionListener(this);
 		BT_LogOut = new JButton("Cerrar Sesion");
 		add(BT_LogOut,gbc);
 		MB_menu.add(BT_LogOut);
@@ -386,7 +371,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		LS_projects = new JList(projectsDescription);
 		LS_projects.addListSelectionListener(this);
-		LS_projects.setSelectedIndex(0);
 		SP_projects = new JScrollPane(LS_projects);
 		
 		gbc.gridx = 0;
@@ -499,81 +483,16 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		setVisible(true);
 	}
-	
-    public void ShowAddTaskScreen(){
-    	
-    	JLabel LB_Nota= new JLabel("Solo las agrega al xml momentaniamente, no se ve en el programa");
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		LB_Nota.setAlignmentX(TOP_ALIGNMENT);
-		add(LB_Nota,gbc);
+
 		
-		LB_Description = new JLabel("Ingresar Descripcion:");
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.anchor = GridBagConstraints.WEST;
-		add(LB_Description,gbc);
-				
-		TF_Description = new JTextField(30);
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.anchor = GridBagConstraints.WEST;
-		add(TF_Description,gbc);
-		TF_Description.addKeyListener(this);
+    
+    public void addNewTaskToGUI(Task task){
+		CurrentProject= Main.user.getProjects().get(LS_projects.getSelectedIndex());
 		
-		LB_Context = new JLabel("Ingresar Contexto:");
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.anchor = GridBagConstraints.WEST;
-		add(LB_Context,gbc);
-				
-		TF_Context = new JTextField(30);
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.anchor = GridBagConstraints.WEST;
-		add(TF_Context,gbc);
-		TF_Context.addKeyListener(this);
-		
-		BT_CreateSU = new JButton("Crear");
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.gridwidth = 2;
-		gbc.gridheight = 1;
-		gbc.weightx = 0.0;
-		gbc.weighty = 0.0;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.anchor = GridBagConstraints.CENTER;
-		add(BT_CreateSU,gbc);
-		
-		BT_CreateSU.addActionListener(this);
-				
-		setVisible(true);
-	}
+		Main.user.getProjects().get(LS_projects.getSelectedIndex()).AddTask(task);			
+		Main.searcher.addNewTask(CurrentProject, task);
+		ShowTasksByProjectScreen(Main.user.getProjects());
+    }
 
 	public void actionPerformed(ActionEvent e) {
 		
@@ -676,9 +595,10 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		}	
 		
 		if(e.getSource()==BT_AddTask){
-			LimpiarVista();
-			ShowAddTaskScreen();
-		}	
+			AddTaskWindow tw = new AddTaskWindow();
+			tw.show();
+			//ShowAddTaskScreen();
+		}
 		
 		if(e.getSource()==BT_Remove){
 			Main.searcher.removeTask( Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(Integer.parseInt(TF_Remove.getText())-1));
@@ -691,40 +611,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			Main.LogInUser(emailaux,passaux);
 			
 			ShowTasksByProjectScreen(Main.user.getProjects());
-		}	
-		
-		if(e.getSource()==BT_CreateSU){
-			LimpiarVista();
-			
-			Random ra = new Random();
-			int n = 10000000 + ra.nextInt(90000000);
-			CurrentProject= Main.user.getProjects().get(LS_projects.getSelectedIndex());
-			String descr = TF_Description.getText();
-			String cont = TF_Context.getText();
-						
-			Task NewTask = new Task(descr, cont);
-			
-			NewTask.setProject(CurrentProject);
-			NewTask.setTID(n);
-			NewTask.setState(State.ACTIVE);
-			NewTask.setResponsible(Main.user);
-			NewTask.setDeadline(Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().get(0).getDeadline());
-			NewTask.AddExecutor(Main.user);
-			
-			Main.user.getProjects().get(LS_projects.getSelectedIndex()).AddTask(NewTask);			
-			Main.searcher.addNewTask(NewTask);	
-			Main.searcher.saveProjectsToXML();
-			Main.searcher.loadProjects();
-			
-			
-			String emailaux = Main.user.getEmail();
-			String passaux = Main.user.getPassword();
-			
-			Main.user.LogOut();
-			Main.LogInUser(emailaux,passaux);
-
-			ShowTasksByProjectScreen(Main.user.getProjects());
-		}	
+		}
 				
 		if(e.getSource()==BT_LogOut){
 			LimpiarVista();
@@ -754,7 +641,6 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			
 				TB_tasks = new JTable(data, columnNames);
 				SP_tasks = new JScrollPane(TB_tasks);
-				TB_tasks.disable();
 				gbc.gridx = 1;
 				gbc.gridy = 0;
 				gbc.gridwidth = 1;
