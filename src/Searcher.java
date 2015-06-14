@@ -227,7 +227,9 @@ public class Searcher {
 	
 	public void loadNotifications(){
 
+
 		Notifications = new ArrayList<ArrayList<ArrayList<String>>>();
+		System.out.println("Ëntró a LoadNotiication");
 		
 		try{
 			File fXmlFile = new File("../TaskManager/Data Files/Notifications.xml");
@@ -237,7 +239,7 @@ public class Searcher {
 			
 			doc.getDocumentElement().normalize();
 			
-			NodeList nList = doc.getElementsByTagName("Notification");
+			NodeList nList = doc.getElementsByTagName("User");
 			
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				 
@@ -247,33 +249,34 @@ public class Searcher {
 		 
 					Element eElement = (Element) nNode;
 					
-					//Primero sacamos los receptors de cada notificacion			
-					ArrayList<String> receptors = new ArrayList<String>();
-					NodeList nList2 = doc.getElementsByTagName("Receptors");
+					//Primero sacamos las notificaciones		
+					ArrayList<String> notificaciones = new ArrayList<String>();
+					NodeList nList2 = doc.getElementsByTagName("Notificaciones");
 					Node nNode2 = nList2.item(temp);
 					
 					if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 						
 						Element eElement2 = (Element) nNode2;
 						
-						for(int i=0; i<eElement2.getElementsByTagName("Receptor").getLength(); i++){
+						for(int i=0; i<eElement2.getElementsByTagName("Notificacion").getLength(); i++){
 							
-							receptors.add(eElement2.getElementsByTagName("Receptor").item(i).getTextContent());
-							/* Ya tenemos los Receptors*/							
+							notificaciones.add(eElement2.getElementsByTagName("Notificacion").item(i).getTextContent());
+							/* Ya tenemos las notificaciones*/							
 						}
 					}
 					
-					//Ahora sacamos el creator
-					ArrayList<ArrayList<String>> notifData = new ArrayList<ArrayList<String>>();
-					notifData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Creator").item(0).getTextContent());}});
-					//Ahora le agregamos la lista de los receptores
-					notifData.add(receptors);
-					//Ahora el mensaje
-					notifData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Message").item(0).getTextContent());}});
+					//Ahora sacamos el Email
+					ArrayList<ArrayList<String>> notificationData = new ArrayList<ArrayList<String>>();
+					notificationData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Email").item(0).getTextContent());}});
+					//Ahora sacamos la password
+					notificationData.add(new ArrayList<String>(){{add(eElement.getElementsByTagName("Password").item(0).getTextContent());}});
+				
+					//Ahora le agregamos la lista de notificaicones
+					notificationData.add(notificaciones);
 					
-					
-					//Finalmente agregamos la nueva notification al arraylist Notifications
-					Notifications.add(notifData);
+					//Finalmente agregamos el nuevo project al arraylist Users
+					Notifications.add(notificationData);
+				
 				}
 			}
 		}
@@ -445,27 +448,27 @@ public class Searcher {
 			
 			doc.appendChild(rootElement);
 			
-			for(int i=0; i<Notifications.size(); i++){	//for para recorrer cada notification
-				Element elem2 = doc.createElement("Notification");
+			for(int i=0; i<Notifications.size(); i++){	//for para recorrer cada project
+				Element elem2 = doc.createElement("User");
 				
-				Element elem3 = doc.createElement("Creator");
+				Element elem3 = doc.createElement("Email");
 				elem3.appendChild(doc.createTextNode(""+Notifications.get(i).get(0).get(0)));
-																
-				Element elem4 = doc.createElement("Receptors");
+				Element elem4 = doc.createElement("Password");
+				elem4.appendChild(doc.createTextNode(""+Notifications.get(i).get(1).get(0)));
 				
-				for(int k=0; k<Tasks.get(i).get(6).size(); k++){	//for para recorrer los executors
-					Element elem5 = doc.createElement("Receptor");
-					elem5.appendChild(doc.createTextNode(""+Notifications.get(i).get(1).get(k)));
-					elem4.appendChild(elem5);
+								
+				Element elem6 = doc.createElement("Notificaciones");
+				
+				for(int k=0; k<Notifications.get(i).get(2).size(); k++){	//for para recorrer las tasks
+					Element elem7 = doc.createElement("Notificacion");
+					elem7.appendChild(doc.createTextNode(""+Notifications.get(i).get(2).get(k)));
+					elem6.appendChild(elem7);
 				}
 				
-				Element elem6 = doc.createElement("Message");
-				elem6.appendChild(doc.createTextNode(""+Notifications.get(i).get(2).get(0)));
-				
-				elem2.appendChild(elem3);		//agregamos Creator a Notification
-				elem2.appendChild(elem4);		//agregamos Receptors a Notification
-				elem2.appendChild(elem6);		//agregamos Message a Notification
-				rootElement.appendChild(elem2);	//agregamos Notification a Notifications
+				elem2.appendChild(elem3);		//agregamos Mail
+				elem2.appendChild(elem4);		//agregamos Password
+				elem2.appendChild(elem6);		//agregamos notificaciones
+				rootElement.appendChild(elem2);	//agregamos usuarios a Notifications
 			}
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -552,6 +555,47 @@ public class Searcher {
 		}
 	}
 
+	public void MarcarComoLeidaNotifications(){
+		Main.searcher.loadNotifications();
+		ArrayList<String> leido= new ArrayList<>();
+		
+		for (int i=0 ; i< Main.searcher.Notifications.size(); i++){
+				if(Main.searcher.Notifications.get(i).get(0).get(0).equals(Main.user.getEmail())){
+					for(int j = 0; j < Main.searcher.Notifications.get(i).get(2).size(); j++){
+						if(Main.searcher.Notifications.get(i).get(2).get(j).contains(",Leido")){
+						leido.add(Main.searcher.Notifications.get(i).get(2).get(j));
+						}
+						else{leido.add(Main.searcher.Notifications.get(i).get(2).get(j)+",Leido");
+							
+						}
+					}
+				
+				}
+			
+			}
+			
+			System.out.println(leido);
+			ArrayList<ArrayList<String>> usuario = new ArrayList<ArrayList<String>>();
+			ArrayList<String> email = new ArrayList<String>();
+			email.add(Main.user.getEmail());
+			ArrayList<String> password= new ArrayList<String>();
+			password.add(Main.user.getPassword());
+			usuario.add(email);
+			usuario.add(password);
+			usuario.add(leido);
+			for (int i=0 ; i< Main.searcher.Notifications.size(); i++){
+				if(Main.searcher.Notifications.get(i).get(0).get(0).equals(Main.user.getEmail())){
+				
+					Main.searcher.Notifications.remove(i);
+					Main.searcher.Notifications.add(i, usuario);
+				
+				}
+			
+			}
+			Main.searcher.saveNotificationsToXML();	
+			Main.searcher.loadNotifications();
+	}
+		
 	public void addNewUser(User user){
 		ArrayList<ArrayList<String>> newUser = new ArrayList<ArrayList<String>>();
 		ArrayList<String> pids = new ArrayList<String>();
@@ -568,6 +612,21 @@ public class Searcher {
 				
 		saveUsersToXML();	//actualizamos la base
 		loadUsers();
+		
+		//Ahora lo agregamos al txt de notificaciones.
+				Main.searcher.loadNotifications();
+				ArrayList<ArrayList<String>> usuario = new ArrayList<ArrayList<String>>();
+				ArrayList<String> notificaciones = new ArrayList<String>();
+				ArrayList<String> email = new ArrayList<String>();
+				email.add(user.getEmail());
+				ArrayList<String> password= new ArrayList<String>();
+				password.add(user.getPassword());
+				notificaciones.add(" ");
+				usuario.add(email);
+				usuario.add(password);
+				usuario.add(notificaciones);
+				Main.searcher.Notifications.add(usuario);
+				Main.searcher.saveNotificationsToXML();
 	}
 	
 	public void addNewProject(Project project){
@@ -587,6 +646,7 @@ public class Searcher {
 		
 		saveProjectsToXML();	//actualizamos la base
 		loadProjects();
+	
 	}
 	
 	/**El siguiente metodo guarda la nueva tarea en el archivo tasks y ademas guarda una referencia
@@ -676,24 +736,23 @@ public class Searcher {
 		addNewTask(task);	//la volvemos a crear
 	}
 	
-	public void addNewNotification(Notification notification){
-		ArrayList<ArrayList<String>> newNot = new ArrayList<ArrayList<String>>();
-		ArrayList<String> receptors = new ArrayList<String>();
-		
-		for(User receptor : notification.getReceptors()){
-			receptors.add(receptor.getEmail());
+	public void addNewNotification(String notificacion, ArrayList<String> Email){
+		Main.searcher.loadNotifications();
+		ArrayList<String> auxiliar = new ArrayList<>();
+
+		for(int i = 0; i < Main.searcher.Notifications.size(); i++){
+			for(int j = 0; j < Email.size(); j++){
+				if(Main.searcher.Notifications.get(i).get(0).get(0).equals(Email.get(j))){
+					Main.searcher.Notifications.get(i).get(2).add(notificacion);
+				}
+			}
 		}
 		
-		newNot.add(new ArrayList<String>(){{add(notification.getCreator().getEmail());}});
-		newNot.add(receptors);
-		newNot.add(new ArrayList<String>(){{add(notification.getMessage());}});
 		
-		Notifications.add(newNot);
-				
-		saveNotificationsToXML();	//actualizamos la base
+	
+		saveNotificationsToXML();
 		loadNotifications();
-	}
-
+}
 	public ArrayList<ArrayList<ArrayList<String>>> getAllUsers(){
 		return Users;
 	}

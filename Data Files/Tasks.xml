@@ -350,4 +350,101 @@
             <Email>jmleighton@uc.cl</Email>
         </Executors>
     </Task>
+    <Task>
+        <TID>33576525</TID>
+        <Description>ksjd</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors/>
+    </Task>
+    <Task>
+        <TID>19266720</TID>
+        <Description>aksn</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>21140104</TID>
+        <Description/>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>jmleighton@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>63999031</TID>
+        <Description>lsjf</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>34112175</TID>
+        <Description>ajs</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>98286970</TID>
+        <Description/>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>32158098</TID>
+        <Description/>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>49884762</TID>
+        <Description>kj</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>67043318</TID>
+        <Description/>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
 </Tasks>

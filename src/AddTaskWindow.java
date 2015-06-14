@@ -152,6 +152,7 @@ public class AddTaskWindow{
 				if(selectedExec.contains(CB_Ejecutores.getSelectedItem().toString()) == false){
 					selectedExec.add(CB_Ejecutores.getSelectedItem().toString());
 					LS_Ejecutores.setListData(selectedExec.toArray());
+				
 				}
 			}
 		});
@@ -177,7 +178,7 @@ public class AddTaskWindow{
 				Random ra = new Random();
 				int n = 10000000 + ra.nextInt(90000000);
 				task.setTID(n);
-				
+			
 				if(CB_Estado.getSelectedItem().toString().equals("") == false){
 					if(CB_Estado.getSelectedItem().toString().trim().equalsIgnoreCase("active"))
 						task.setState(State.ACTIVE);
@@ -203,8 +204,13 @@ public class AddTaskWindow{
 					for(int i=0; i<LS_Ejecutores.getModel().getSize(); i++){
 						task.AddExecutor(new User(LS_Ejecutores.getModel().getElementAt(i).toString(), ""));
 					}
+			
+				System.out.println("paso por crear");
+				Main.searcher.addNewNotification(Main.user.getEmail()+" te agregó como ejecutor de la tarea "+TF_Descripcion.getText(), selectedExec);
 				}
+			
 				
+				System.out.println(selectedExec);
 				Main.ui.addNewTaskToGUI(task);
 				frmNuevaTarea.setVisible(false);
 				frmNuevaTarea.dispose();
@@ -214,7 +220,7 @@ public class AddTaskWindow{
 		frmNuevaTarea.getContentPane().add(BT_Crear, "4, 20, 3, 1");
 		
 		frmNuevaTarea.setVisible(true);
+	
 	}
 
 }
-
