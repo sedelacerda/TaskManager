@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class Main {
 	
-	public static Email mail;
+	
 	public static User user;
 	public static Searcher searcher = new Searcher();	//conversar esto, tal vez no es la mejor opcion
 	public static UserInterface ui;

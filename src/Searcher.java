@@ -628,12 +628,14 @@ public class Searcher {
 				usuario.add(notificaciones);
 				Main.searcher.Notifications.add(usuario);
 				Main.searcher.saveNotificationsToXML();
+				//Enviar mail 
+				Email mail;
 				String clave = "moktiiopqxxydcii";
 				String mensaje = "El equipo de TaskManager le da la Bienvenida!!\nSu contraseña es "+user.getPassword()  ;
 				String asunto = "Bienvenido a esta nueva experiencia";
-				Main.mail = new Email("TaskManager.Adm@gmail.com", clave, user.getEmail(), asunto , mensaje);
+				mail = new Email("TaskManager.Adm@gmail.com", clave, user.getEmail(), asunto , mensaje);
 				
-				if(Main.mail.sendMail()){
+				if(mail.sendMail()){
 						JOptionPane.showMessageDialog(null, "se le ha enviado un email con los datos de su cuenta");
 					}
 					else{

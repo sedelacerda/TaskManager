@@ -68,4 +68,11 @@
             <Notificacion> </Notificacion>
         </Notificaciones>
     </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
 </Notifications>
