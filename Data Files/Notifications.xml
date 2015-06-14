@@ -40,4 +40,32 @@
             <Notificacion> </Notificacion>
         </Notificaciones>
     </User>
+    <User>
+        <Email>francisca.urrutia.tupper@gmail.com</Email>
+        <Password>EmmaLeighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>francisca.urrutia.tupper@gmail.com</Email>
+        <Password>Emmaleighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>franut23@hotmail.com</Email>
+        <Password>emmaLeighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>franut23@hotmail.com</Email>
+        <Password>emmaleighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
 </Notifications>

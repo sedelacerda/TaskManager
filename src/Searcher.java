@@ -631,7 +631,7 @@ public class Searcher {
 				String clave = "moktiiopqxxydcii";
 				String mensaje = "El equipo de TaskManager le da la Bienvenida!!\nSu contraseña es "+user.getPassword()  ;
 				String asunto = "Bienvenido a esta nueva experiencia";
-				Main.mail = new Email("TaskManager.Adm@gmail.com", clave, "jmleighton@uc.cl", asunto , mensaje);
+				Main.mail = new Email("TaskManager.Adm@gmail.com", clave, user.getEmail(), asunto , mensaje);
 				
 				if(Main.mail.sendMail()){
 						JOptionPane.showMessageDialog(null, "se le ha enviado un email con los datos de su cuenta");
