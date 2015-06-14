@@ -17,7 +17,7 @@
         </Projects>
     </User>
     <User>
-        <Email>jmleighton@uc.cl</Email>
+        <Email>jmleighton2@uc.cl</Email>
         <Password>098765</Password>
         <Projects>
             <PID>5555</PID>
@@ -37,6 +37,11 @@
     <User>
         <Email>bum@uc.cl</Email>
         <Password>plkm</Password>
+        <Projects/>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
         <Projects/>
     </User>
 </Users>

@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -627,6 +628,18 @@ public class Searcher {
 				usuario.add(notificaciones);
 				Main.searcher.Notifications.add(usuario);
 				Main.searcher.saveNotificationsToXML();
+				String clave = "moktiiopqxxydcii";
+				String mensaje = "El equipo de TaskManager le da la Bienvenida!!\nSu contraseña es "+user.getPassword()  ;
+				String asunto = "Bienvenido a esta nueva experiencia";
+				Main.mail = new Email("TaskManager.Adm@gmail.com", clave, "jmleighton@uc.cl", asunto , mensaje);
+				
+				if(Main.mail.sendMail()){
+						JOptionPane.showMessageDialog(null, "se le ha enviado un email con los datos de su cuenta");
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Direccion de correo inválida");
+						
+					}
 	}
 	
 	public void addNewProject(Project project){

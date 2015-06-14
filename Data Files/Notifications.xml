@@ -19,4 +19,25 @@
             <Notificacion>not6,Leido</Notificacion>
         </Notificaciones>
     </User>
+    <User>
+        <Email>pjdonoso@uc.cl</Email>
+        <Password>poiuyt</Password>
+        <Notificaciones>
+            <Notificacion>not5</Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
 </Notifications>
