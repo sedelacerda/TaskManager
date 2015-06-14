@@ -4,6 +4,7 @@
 /AddTaskWindow.class
 /Main.class
 /Notification.class
+/NotificationsWindow.class
 /Project.class
 /Searcher$1.class
 /Searcher$10.class
@@ -29,8 +30,6 @@
 /Searcher$29.class
 /Searcher$3.class
 /Searcher$30.class
-/Searcher$31.class
-/Searcher$32.class
 /Searcher$4.class
 /Searcher$5.class
 /Searcher$6.class
@@ -42,4 +41,3 @@
 /Task.class
 /User.class
 /UserInterface.class
-/NotificationsWindow.class
