@@ -29,11 +29,13 @@ public class Searcher {
 	ArrayList<ArrayList<ArrayList<String>>> Projects = new ArrayList<ArrayList<ArrayList<String>>>();
 	ArrayList<ArrayList<ArrayList<String>>> Tasks = new ArrayList<ArrayList<ArrayList<String>>>();
 	ArrayList<ArrayList<ArrayList<String>>> Notifications = new ArrayList<ArrayList<ArrayList<String>>>();
+	List <String> Context;
 	
 	public void loadMainData(){
 		loadUsers();
 		loadProjects();
 		loadTasks();
+		loadContext();
 	}
 	
 	public void saveAllDataToXML(){
@@ -227,10 +229,7 @@ public class Searcher {
 	}
 	
 	public void loadNotifications(){
-
-
 		Notifications = new ArrayList<ArrayList<ArrayList<String>>>();
-		System.out.println("Ëntró a LoadNotiication");
 		
 		try{
 			File fXmlFile = new File("../TaskManager/Data Files/Notifications.xml");
@@ -286,6 +285,36 @@ public class Searcher {
 			e.printStackTrace();
 		}
 	}
+
+	public void loadContext(){
+		Context = new ArrayList<String>();
+		
+		try{
+			File fXmlFile = new File("../TaskManager/Data Files/Context.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+			
+			doc.getDocumentElement().normalize();
+			
+			NodeList nList = doc.getElementsByTagName("Context");
+			
+			
+				Node nNode = nList.item(0);
+				
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		 
+					Element eElement = (Element) nNode;
+					for(int i=0; i<eElement.getElementsByTagName("Contexto").getLength(); i++){
+						
+						Context.add(eElement.getElementsByTagName("Contexto").item(i).getTextContent());	
+						}					
+				}		
+			}
+		catch(Exception e){
+			e.printStackTrace();
+			}
+		}
 	
 	public void saveUsersToXML(){
 		try{
@@ -486,6 +515,40 @@ public class Searcher {
 		}
 	}
 	
+	public void saveContextToXML(){
+		try{
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.newDocument();
+			
+			Element rootElement = doc.createElement("Context");
+			
+			doc.appendChild(rootElement);
+			
+			for(int i=0; i<Context.size(); i++){
+				Element elem2 = doc.createElement("Context");
+				
+				Element elem3 = doc.createElement("Contexto");
+				elem3.appendChild(doc.createTextNode(""+Context.get(i)));
+				
+				elem2.appendChild(elem3);		
+				rootElement.appendChild(elem2);
+			}
+			
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File("../TaskManager/Data Files/Context.xml"));
+			transformer.transform(source, result);
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public boolean ValidateUser(String user_email, char[] user_password){
 		
 		boolean output = false;
@@ -597,6 +660,24 @@ public class Searcher {
 			Main.searcher.loadNotifications();
 	}
 		
+	public void addExistingUser(User user){
+		ArrayList<ArrayList<String>> newUser = new ArrayList<ArrayList<String>>();
+		ArrayList<String> pids = new ArrayList<String>();
+		
+		for(Project proj : user.getProjects()){
+			pids.add(""+proj.getPID());
+		}
+		
+		newUser.add(new ArrayList<String>(){{add(""+user.getEmail());}});
+		newUser.add(new ArrayList<String>(){{add(""+user.getPassword());}});
+		newUser.add(pids);
+		
+		Users.add(newUser);
+				
+		saveUsersToXML();	//actualizamos la base
+		loadUsers();
+	}
+	
 	public void addNewUser(User user){
 		ArrayList<ArrayList<String>> newUser = new ArrayList<ArrayList<String>>();
 		ArrayList<String> pids = new ArrayList<String>();
@@ -657,10 +738,11 @@ public class Searcher {
 		newProject.add(new ArrayList<String>(){{add(project.getState().toString().toUpperCase());}});
 		newProject.add(tids);
 		
-		Projects.add(newProject);
-		
-		saveProjectsToXML();	//actualizamos la base
+		Projects.add(newProject);		
+		saveProjectsToXML();	//actualizamos la base		
 		loadProjects();
+		
+		updateUsers(Main.user);
 	
 	}
 	
@@ -717,6 +799,17 @@ public class Searcher {
 		loadTasks();
 	}
 	
+	public void removeUser(User user){
+		for(int i=0; i<Users.size(); i++){
+			if(Users.get(i).get(0).get(0).equals(""+user.getEmail())){
+				Users.remove(i);
+			}
+		}
+		
+		saveUsersToXML();
+		loadUsers();
+	}
+	
 	public void removeProject(Project project){
 		
 		for(int i=0; i<Projects.size(); i++){
@@ -728,7 +821,13 @@ public class Searcher {
 		saveProjectsToXML();
 		loadProjects();
 	}
-
+	
+	public void removeTask(ArrayList<ArrayList<String>> task){
+		Tasks.remove(task);
+		saveTasksToXML();
+		loadTasks();
+		
+	}
 	public void removeTask(Task task){
 		for(int i=0; i<Tasks.size(); i++){
 			if(Tasks.get(i).get(0).get(0).equals(""+task.getTID())){
@@ -740,6 +839,12 @@ public class Searcher {
 		loadTasks();
 	}
 
+	public void updateUsers(User user){	//no se pueden modificar los PID
+		
+		removeUser(user);	//lo borramos
+		addExistingUser(user);	//lo volvemos a crear
+	}
+	
 	public void updateProject(Project project){	//no se pueden modificar los PID
 		
 		removeProject(project);	//lo borramos
@@ -753,7 +858,6 @@ public class Searcher {
 	
 	public void addNewNotification(String notificacion, ArrayList<String> Email){
 		Main.searcher.loadNotifications();
-		ArrayList<String> auxiliar = new ArrayList<>();
 
 		for(int i = 0; i < Main.searcher.Notifications.size(); i++){
 			for(int j = 0; j < Email.size(); j++){
@@ -761,14 +865,24 @@ public class Searcher {
 					Main.searcher.Notifications.get(i).get(2).add(notificacion);
 				}
 			}
-		}
-		
-		
-	
+		}	
 		saveNotificationsToXML();
 		loadNotifications();
 }
+	
+	public void addNewContext(String context){
+		Main.searcher.loadContext();
+		Main.searcher.Context.add(context);
+			
+		saveContextToXML();
+		loadContext();
+}
+	
 	public ArrayList<ArrayList<ArrayList<String>>> getAllUsers(){
 		return Users;
+	}
+	
+	public ArrayList<ArrayList<ArrayList<String>>> getAllTasks(){
+		return Tasks;
 	}
 }

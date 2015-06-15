@@ -23,7 +23,7 @@
         <Email>pjdonoso@uc.cl</Email>
         <Password>poiuyt</Password>
         <Notificaciones>
-            <Notificacion>not5</Notificacion>
+            <Notificacion>not5,Leido</Notificacion>
         </Notificaciones>
     </User>
     <User>

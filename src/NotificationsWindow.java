@@ -45,39 +45,40 @@ public class NotificationsWindow {
 		frmNotificaciones.setBounds(100, 100, 580, 400);
 		frmNotificaciones.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmNotificaciones.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(187dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(1dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(3dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+			FormFactory.DEFAULT_COLSPEC,
+			FormFactory.DEFAULT_COLSPEC,
+			FormFactory.RELATED_GAP_COLSPEC,
+			ColumnSpec.decode("default:grow"),
+			FormFactory.RELATED_GAP_COLSPEC,
+			ColumnSpec.decode("max(187dlu;default)"),
+			FormFactory.RELATED_GAP_COLSPEC,
+			FormFactory.DEFAULT_COLSPEC,
+			FormFactory.RELATED_GAP_COLSPEC,
+			ColumnSpec.decode("default:grow"),
+			},new RowSpec[] {
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			RowSpec.decode("max(1dlu;default)"),
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			FormFactory.RELATED_GAP_ROWSPEC,
+			RowSpec.decode("default:grow"),
+			FormFactory.RELATED_GAP_ROWSPEC,
+			RowSpec.decode("max(3dlu;default)"),
+			FormFactory.RELATED_GAP_ROWSPEC,
+			FormFactory.DEFAULT_ROWSPEC,
+			}));
 		
 		LB_Notificaciones = new JLabel("Usted tiene las siguientes notificaciones");
 		LB_Notificaciones.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -90,34 +91,19 @@ public class NotificationsWindow {
 		
 		for (int k=0; k<Main.searcher.Notifications.size();k++){
 			usuarios.add(Main.searcher.Notifications.get(k).get(0).get(0).toString());
-		}
-	
+		}	
 		
-		for(int i=0; i<Main.searcher.Notifications.size(); i++){
-		
+		for(int i=0; i<Main.searcher.Notifications.size(); i++){		
 			if(usuarios.get(i).equals(Main.user.getEmail().toString())){	
 				LS_Notificaciones = new JList();
 				frmNotificaciones.getContentPane().add(LS_Notificaciones, "4, 18, 3, 1, fill, fill");
 				for (int j = 0; j< Main.searcher.Notifications.get(i).get(2).size(); j++){
-				
-					
-				
-				
-						notificaciones.add(Main.searcher.Notifications.get(i).get(2).get(j));
-						CB_Notificaciones = new JComboBox(notificaciones.toArray());
-						LS_Notificaciones.setListData(notificaciones.toArray());
-						
-					
-				
-				
-				}
-				
-				Main.searcher.MarcarComoLeidaNotifications();
-		
-			}
-			
-				
-		}
-	
-	}
+					notificaciones.add(Main.searcher.Notifications.get(i).get(2).get(j));
+					CB_Notificaciones = new JComboBox(notificaciones.toArray());
+					LS_Notificaciones.setListData(notificaciones.toArray());	
+				}				
+				Main.searcher.MarcarComoLeidaNotifications();		
+			}	
+		}	
+	}	
 }

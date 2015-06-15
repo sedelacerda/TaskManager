@@ -1,5 +1,7 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -22,7 +25,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.text.DefaultCaret;
+
+import java.awt.EventQueue;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -30,7 +41,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 
-public class AddTaskWindow{
+public class AddProjectWindow{
 	
 	private JFrame frmNuevaTarea;
 	private JTextField TF_Descripcion;
@@ -46,10 +57,12 @@ public class AddTaskWindow{
 	private JList LS_Ejecutores;
 	private JButton BT_Eliminar;
 	private ArrayList<String> selectedExec = new ArrayList<String>();
+	private Context context = new Context();
+	State st;
 	
 	public void show(){
 		frmNuevaTarea = new JFrame();
-		frmNuevaTarea.setTitle("Nueva Tarea");
+		frmNuevaTarea.setTitle("Nuevo Projecto");
 		frmNuevaTarea.setResizable(false);
 		frmNuevaTarea.setBounds(100, 100, 580, 400);
 		frmNuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -88,7 +101,7 @@ public class AddTaskWindow{
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		LB_NuevaTarea = new JLabel("Nueva Tarea");
+		LB_NuevaTarea = new JLabel("Nuevo Projecto");
 		LB_NuevaTarea.setFont(new Font("Tahoma", Font.BOLD, 14));
 		frmNuevaTarea.getContentPane().add(LB_NuevaTarea, "1, 2, 10, 1, center, default");
 		
@@ -99,119 +112,29 @@ public class AddTaskWindow{
 		frmNuevaTarea.getContentPane().add(TF_Descripcion, "4, 6, 3, 1, fill, default");
 		TF_Descripcion.setColumns(10);
 		
-		JLabel LB_Contexto = new JLabel("* Contexto:");
-		frmNuevaTarea.getContentPane().add(LB_Contexto, "2, 8, left, default");
-		
-		CB_Contexto = new JComboBox();
-		CB_Contexto.setModel(new DefaultComboBoxModel(new String[] {"En la oficina", "En el auto", "Al telefono"}));
-		frmNuevaTarea.getContentPane().add(CB_Contexto, "4, 8, 3, 1, fill, default");
-		
 		JLabel LB_Estado = new JLabel("Estado:");
 		frmNuevaTarea.getContentPane().add(LB_Estado, "2, 10, left, default");
 		
 		CB_Estado = new JComboBox();
 		CB_Estado.setModel(new DefaultComboBoxModel(new String[] {"ACTIVE", "FROZEN", "CLOSED"}));
 		frmNuevaTarea.getContentPane().add(CB_Estado, "4, 10, 3, 1, fill, default");
-		
-		JLabel LB_Deadline = new JLabel("Deadline:");
-		frmNuevaTarea.getContentPane().add(LB_Deadline, "2, 12, left, default");
-		
-		Date tomorrow = new Date();
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(tomorrow); 
-		c.add(Calendar.DATE, 1);
-		tomorrow = c.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat( "dd-MM-yyyy" );
-		   
-		TF_Deadline = new JTextField();
-		TF_Deadline.setText(dateFormat.format(tomorrow));
-		frmNuevaTarea.getContentPane().add(TF_Deadline, "4, 12, 3, 1, fill, default");
-		TF_Deadline.setColumns(10);
-		
-		ArrayList<String> emails = new ArrayList<String>();
-		for(ArrayList<ArrayList<String>> user : Main.searcher.getAllUsers()){
-			emails.add(user.get(0).get(0));
-		}
-		
-		JLabel LB_Responsable = new JLabel("Responsable:");
-		frmNuevaTarea.getContentPane().add(LB_Responsable, "2, 14, left, default");
-		
-		CB_Responsable = new JComboBox(emails.toArray());
-		frmNuevaTarea.getContentPane().add(CB_Responsable, "4, 14, 3, 1, fill, default");
-		
-		LB_Ejecutores = new JLabel("Ejecutor(es):");
-		frmNuevaTarea.getContentPane().add(LB_Ejecutores, "2, 16, right, default");
-		
-		
-		CB_Ejecutores = new JComboBox(emails.toArray());
-		frmNuevaTarea.getContentPane().add(CB_Ejecutores, "4, 16, 3, 1, fill, default");
-		
-		BT_Agregar = new JButton("Agregar");
-		BT_Agregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(selectedExec.contains(CB_Ejecutores.getSelectedItem().toString()) == false){
-					selectedExec.add(CB_Ejecutores.getSelectedItem().toString());
-					LS_Ejecutores.setListData(selectedExec.toArray());
 				
-				}
-			}
-		});
-		frmNuevaTarea.getContentPane().add(BT_Agregar, "8, 16");
-		
-		LS_Ejecutores = new JList();
-		frmNuevaTarea.getContentPane().add(LS_Ejecutores, "4, 18, 3, 1, fill, fill");
-		
-		BT_Eliminar = new JButton("Eliminar");
-		BT_Eliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				selectedExec.remove(LS_Ejecutores.getSelectedValue().toString());
-				LS_Ejecutores.setListData(selectedExec.toArray());
-			}
-		});
-		frmNuevaTarea.getContentPane().add(BT_Eliminar, "8, 18");
-		
 		BT_Crear = new JButton("Crear");
 		BT_Crear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Task task = new Task(TF_Descripcion.getText(), CB_Contexto.getSelectedItem().toString());
-				
 				Random ra = new Random();
-				int n = 10000000 + ra.nextInt(90000000);
-				task.setTID(n);
-			
+				int n = 0000 + ra.nextInt(9999);
 				if(CB_Estado.getSelectedItem().toString().equals("") == false){
 					if(CB_Estado.getSelectedItem().toString().trim().equalsIgnoreCase("active"))
-						task.setState(State.ACTIVE);
+						st = State.ACTIVE;
 					if(CB_Estado.getSelectedItem().toString().trim().equalsIgnoreCase("frozen"))
-						task.setState(State.FROZEN);
+						st = State.FROZEN;
 					if(CB_Estado.getSelectedItem().toString().trim().equalsIgnoreCase("closed"))
-						task.setState(State.CLOSED);
+						st = State.CLOSED;
 				}
+				Project project = new Project(n, TF_Descripcion.getText(),st);
 				
-				if(TF_Deadline.getText().toString().contains("Ej:") == false){
-					DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-					Date date = new Date();
-					try{
-						date = df.parse(TF_Deadline.getText().toString());
-					}catch(ParseException e){}
-					task.setDeadline(date);
-				}
-				
-				if(CB_Responsable.getSelectedItem().toString().trim().equals("") == false)
-					task.setResponsible(new User(CB_Responsable.getSelectedItem().toString(), ""));
-				
-				if(LS_Ejecutores.getModel().getSize()>0){
-					for(int i=0; i<LS_Ejecutores.getModel().getSize(); i++){
-						task.AddExecutor(new User(LS_Ejecutores.getModel().getElementAt(i).toString(), ""));
-					}
-			
-				System.out.println("paso por crear");
-				Main.searcher.addNewNotification(Main.user.getEmail()+" te agregó como ejecutor de la tarea "+TF_Descripcion.getText(), selectedExec);
-				}
-			
-				
-				System.out.println(selectedExec);
-				Main.ui.addNewTaskToGUI(task);
+				Main.ui.addNewProjectToGUI(project);
 				frmNuevaTarea.setVisible(false);
 				frmNuevaTarea.dispose();
 				
