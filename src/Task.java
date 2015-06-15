@@ -4,7 +4,7 @@ public class Task {
 	
 	private int TID;
 	private String description;
-	private String context;
+	private Object context;
 	private State currentState;
 	private Date deadline;
 	private User currentResponsible;
@@ -15,30 +15,30 @@ public class Task {
 	/* Para mayor flexibilidad se establece varios tipos de constructores */
 	
 
-	public Task(int task_id, String task_description, String task_context, State task_state, Date task_deadline, Project tasks_project) {
+	public Task(int task_id, String task_description, Object task_context, State task_state, Date task_deadline, Project tasks_project) {
 		this.TID = task_id;
 		this.description = task_description;
-		this.context = task_context;
+		this.context = (String)task_context;
 		this.project = tasks_project;
 		this.deadline = task_deadline;
 		this.currentState = task_state;
 	}
 
-	public Task(String task_description, String task_context, Project tasks_project, Date task_deadline) {
+	public Task(String task_description, Object task_context, Project tasks_project, Date task_deadline) {
 		
 	}
 	
-	public Task(String task_description, String task_context, Project tasks_project) {
+	public Task(String task_description, Object task_context, Project tasks_project) {
 		
 	}
 	
-	public Task(String task_description, String task_context,Date Task_deadline) {
+	public Task(String task_description, Object task_context,Date Task_deadline) {
 		
 	}
 	
-	public Task(String task_description, String task_context) {
+	public Task(String task_description, Object task_context) {
 		this.description = task_description;
-		this.context = task_context;
+		this.context = (String)task_context;
 	}
 	
 	/* Public methods */
@@ -74,12 +74,12 @@ public class Task {
 		return description;
 	}
 	
-	public void setContext(String new_context) {
-		context = new_context;
+	public void setContext(Object new_context) {
+		context = (String)new_context;
 	}
 	
 	public String getContext() {
-		return context;
+		return (String)context;
 	}
 	
 	public void setResponsible(User new_responsible) {

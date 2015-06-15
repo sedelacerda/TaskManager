@@ -118,17 +118,6 @@
         </Executors>
     </Task>
     <Task>
-        <TID>57474100</TID>
-        <Description>Dono gay</Description>
-        <Context>muuuuy gay</Context>
-        <State>ACTIVE</State>
-        <Deadline>Mon May 25 00:00:00 ART 2015</Deadline>
-        <Responsible>sedelacerda@uc.cl</Responsible>
-        <Executors>
-            <Email>sedelacerda@uc.cl</Email>
-        </Executors>
-    </Task>
-    <Task>
         <TID>50363765</TID>
         <Description>ollL</Description>
         <Context>contextooo</Context>
@@ -348,6 +337,48 @@
         <Responsible>sedelacerda@uc.cl</Responsible>
         <Executors>
             <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>33576525</TID>
+        <Description>ksjd</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors/>
+    </Task>
+    <Task>
+        <TID>19266720</TID>
+        <Description>aksn</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>63999031</TID>
+        <Description>lsjf</Description>
+        <Context>En la oficina</Context>
+        <State>ACTIVE</State>
+        <Deadline>Mon Jun 15 00:00:00 CLT 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>jmleighton@uc.cl</Email>
+        </Executors>
+    </Task>
+    <Task>
+        <TID>55168806</TID>
+        <Description>sasas</Description>
+        <Context>En el auto</Context>
+        <State>ACTIVE</State>
+        <Deadline>Tue Jun 16 00:00:00 GMT-04:00 2015</Deadline>
+        <Responsible>sedelacerda@uc.cl</Responsible>
+        <Executors>
+            <Email>soyel@uc.cl</Email>
         </Executors>
     </Task>
 </Tasks>

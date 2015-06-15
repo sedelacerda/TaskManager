@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Notifications>
-    <Notification>
-        <Creator>sedelacerda@uc.cl</Creator>
-        <Receptors>
-            <Receptor>pjdonoso@uc.cl</Receptor>
-        </Receptors>
-        <Message>Esta quedando bueno</Message>
-    </Notification>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion>not1,Leido</Notificacion>
+            <Notificacion>not2,Leido</Notificacion>
+            <Notificacion>not3,Leido</Notificacion>
+            <Notificacion>jmleighton@uc.cl te agregó como ejecutor de la tarea ,Leido</Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>sedelacerda@uc.cl</Email>
+        <Password>qwerty</Password>
+        <Notificaciones>
+            <Notificacion>not4,Leido</Notificacion>
+            <Notificacion>not5,Leido</Notificacion>
+            <Notificacion>not6,Leido</Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>pjdonoso@uc.cl</Email>
+        <Password>poiuyt</Password>
+        <Notificaciones>
+            <Notificacion>not5,Leido</Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>francisca.urrutia.tupper@gmail.com</Email>
+        <Password>EmmaLeighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>francisca.urrutia.tupper@gmail.com</Email>
+        <Password>Emmaleighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>franut23@hotmail.com</Email>
+        <Password>emmaLeighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>franut23@hotmail.com</Email>
+        <Password>emmaleighton</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
+    <User>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
+        <Notificaciones>
+            <Notificacion> </Notificacion>
+        </Notificaciones>
+    </User>
 </Notifications>

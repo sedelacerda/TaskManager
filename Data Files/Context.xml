@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context>
+    <Context>
+        <Contexto>En el auto</Contexto>
+    </Context>
+    <Context>
+        <Contexto>En el trabajo</Contexto>
+    </Context>
+    <Context>
+        <Contexto>En la casa</Contexto>
+    </Context>    
+</Context>

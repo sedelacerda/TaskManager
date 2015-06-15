@@ -9,15 +9,7 @@
         </Projects>
     </User>
     <User>
-        <Email>pjdonoso@uc.cl</Email>
-        <Password>poiuyt</Password>
-        <Projects>
-            <PID>3333</PID>
-            <PID>4444</PID>
-        </Projects>
-    </User>
-    <User>
-        <Email>jmleighton@uc.cl</Email>
+        <Email>jmleighton2@uc.cl</Email>
         <Password>098765</Password>
         <Projects>
             <PID>5555</PID>
@@ -35,8 +27,16 @@
         <Projects/>
     </User>
     <User>
-        <Email>bum@uc.cl</Email>
-        <Password>plkm</Password>
+        <Email>jmleighton@uc.cl</Email>
+        <Password>098765</Password>
         <Projects/>
+    </User>
+    <User>
+        <Email>pjdonoso@uc.cl</Email>
+        <Password>poiuyt</Password>
+        <Projects>
+            <PID>4444</PID>
+            <PID>9898</PID>
+        </Projects>
     </User>
 </Users>

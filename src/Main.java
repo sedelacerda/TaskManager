@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class Main {
-
+	
+	
 	public static User user;
 	public static Searcher searcher = new Searcher();	//conversar esto, tal vez no es la mejor opcion
 	public static UserInterface ui;
@@ -11,10 +14,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		searcher.loadMainData();
-		
+
 		ui = new UserInterface();
 		ui.ShowLoginScreen();
-		LogInUser("sedelacerda@uc.cl","qwerty");
+		//LogInUser("jmleighton@uc.cl","098765");
 	}
 	
 	public static void LogInUser(String user_email, String user_password) {

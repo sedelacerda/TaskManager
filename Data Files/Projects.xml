@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Projects>
     <Project>
-        <PID>3333</PID>
-        <Description>Proyecto3</Description>
-        <State>ACTIVE</State>
-        <Tasks>
-            <TID>11150000</TID>
-            <TID>11160000</TID>
-        </Tasks>
-    </Project>
-    <Project>
         <PID>4444</PID>
         <Description>Proyecto4</Description>
         <State>CLOSED</State>
@@ -20,15 +11,6 @@
         </Tasks>
     </Project>
     <Project>
-        <PID>5555</PID>
-        <Description>Proyecto5</Description>
-        <State>ACTIVE</State>
-        <Tasks>
-            <TID>11190000</TID>
-            <TID>11200000</TID>
-        </Tasks>
-    </Project>
-    <Project>
         <PID>6666</PID>
         <Description>Proyecto6</Description>
         <State>ACTIVE</State>
@@ -36,17 +18,6 @@
             <TID>11150000</TID>
             <TID>11210000</TID>
             <TID>11220000</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>2222</PID>
-        <Description>Proyecto2</Description>
-        <State>FROZEN</State>
-        <Tasks>
-            <TID>11130000</TID>
-            <TID>11140000</TID>
-            <TID>78327404</TID>
-            <TID>76002203</TID>
         </Tasks>
     </Project>
     <Project>
@@ -70,6 +41,35 @@
             <TID>89116674</TID>
             <TID>41799197</TID>
             <TID>41436180</TID>
+            <TID>33576525</TID>
+            <TID>19266720</TID>
+        </Tasks>
+    </Project>
+    <Project>
+        <PID>2222</PID>
+        <Description>Proyecto2</Description>
+        <State>FROZEN</State>
+        <Tasks>
+            <TID>11130000</TID>
+            <TID>11140000</TID>
+            <TID>78327404</TID>
+            <TID>76002203</TID>
+            <TID>21140104</TID>
+        </Tasks>
+    </Project>
+    <Project>
+        <PID>5555</PID>
+        <Description>Proyecto5</Description>
+        <State>ACTIVE</State>
+        <Tasks>
+            <TID>11190000</TID>
+            <TID>11200000</TID>
+            <TID>63999031</TID>
+            <TID>34112175</TID>
+            <TID>98286970</TID>
+            <TID>32158098</TID>
+            <TID>49884762</TID>
+            <TID>67043318</TID>
         </Tasks>
     </Project>
 </Projects>
