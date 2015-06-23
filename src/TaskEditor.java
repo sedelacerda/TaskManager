@@ -205,6 +205,7 @@ public class TaskEditor {
 				if(selectedExec.contains(CB_Ejecutores.getSelectedItem().toString()) == false){
 					selectedExec.add(CB_Ejecutores.getSelectedItem().toString());
 					LS_Ejecutores.setListData(selectedExec.toArray());
+					
 				}
 			}
 		});
@@ -258,6 +259,8 @@ public class TaskEditor {
 					for(int i=0; i<LS_Ejecutores.getModel().getSize(); i++){
 						task.AddExecutor(new User(LS_Ejecutores.getModel().getElementAt(i).toString(), ""));
 					}
+					String mensaje = "El usuario "+Main.user.getEmail()+" lo ha agregado en la tarea "+TF_Descripcion.getSelectedText();
+					Main.searcher.addNewNotification(mensaje,selectedExec);
 				}
 				
 				Main.ui.addNewTaskToGUI(task);
@@ -321,7 +324,10 @@ public class TaskEditor {
 				Main.LogInUser(emailaux,passaux);
 				
 				Main.ui.ShowTasksByProjectScreen(Main.user.getProjects());
-				
+				String mensaje = "El usuario "+Main.user.getEmail()+"  ha eliminado la tarea "+TF_Descripcion.getSelectedText();
+				ArrayList<String> usuarios = new ArrayList<>();
+				usuarios.add(Main.user.getEmail());
+				Main.searcher.addNewNotification(mensaje,usuarios);
 				frmEdicionDeTarea.setVisible(false);
 				frmEdicionDeTarea.dispose();				
 			}
@@ -428,7 +434,10 @@ public class TaskEditor {
 		JButton btnNewButton = new JButton("Modificar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String mensaje = "El usuario "+Main.user.getEmail()+" ha modificado la tarea ";
+				ArrayList<String> usuarios = new ArrayList<>();
+				usuarios.add(Main.user.getEmail());
+				Main.searcher.addNewNotification(mensaje,usuarios);
 			}
 		});
 		

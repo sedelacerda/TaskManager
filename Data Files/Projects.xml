@@ -72,4 +72,18 @@
             <TID>67043318</TID>
         </Tasks>
     </Project>
+    <Project>
+        <PID>9874</PID>
+        <Description>NuevoProyecto</Description>
+        <State>ACTIVE</State>
+        <Tasks>
+            <TID>22339534</TID>
+        </Tasks>
+    </Project>
+    <Project>
+        <PID>8168</PID>
+        <Description>ashdc</Description>
+        <State>ACTIVE</State>
+        <Tasks/>
+    </Project>
 </Projects>
