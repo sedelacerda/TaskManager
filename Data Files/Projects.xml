@@ -1,89 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Projects>
     <Project>
-        <PID>4444</PID>
-        <Description>Proyecto4</Description>
-        <State>CLOSED</State>
-        <Tasks>
-            <TID>11150000</TID>
-            <TID>11170000</TID>
-            <TID>11180000</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>6666</PID>
-        <Description>Proyecto6</Description>
+        <PID>7630</PID>
+        <Description>Construir Puente Tao Tao</Description>
         <State>ACTIVE</State>
         <Tasks>
-            <TID>11150000</TID>
-            <TID>11210000</TID>
-            <TID>11220000</TID>
+            <TID>47865987</TID>
+            <TID>88344946</TID>
+            <TID>54801253</TID>
+            <TID>66386911</TID>
+            <TID>81198948</TID>
+            <TID>47840438</TID>
         </Tasks>
-    </Project>
-    <Project>
-        <PID>1111</PID>
-        <Description>Proyecto1</Description>
-        <State>ACTIVE</State>
-        <Tasks>
-            <TID>11110000</TID>
-            <TID>35222197</TID>
-            <TID>86021145</TID>
-            <TID>59489743</TID>
-            <TID>25391270</TID>
-            <TID>13792891</TID>
-            <TID>84511027</TID>
-            <TID>27265281</TID>
-            <TID>12036075</TID>
-            <TID>38466779</TID>
-            <TID>44475956</TID>
-            <TID>57035664</TID>
-            <TID>88448093</TID>
-            <TID>89116674</TID>
-            <TID>41799197</TID>
-            <TID>41436180</TID>
-            <TID>33576525</TID>
-            <TID>19266720</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>2222</PID>
-        <Description>Proyecto2</Description>
-        <State>FROZEN</State>
-        <Tasks>
-            <TID>11130000</TID>
-            <TID>11140000</TID>
-            <TID>78327404</TID>
-            <TID>76002203</TID>
-            <TID>21140104</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>5555</PID>
-        <Description>Proyecto5</Description>
-        <State>ACTIVE</State>
-        <Tasks>
-            <TID>11190000</TID>
-            <TID>11200000</TID>
-            <TID>63999031</TID>
-            <TID>34112175</TID>
-            <TID>98286970</TID>
-            <TID>32158098</TID>
-            <TID>49884762</TID>
-            <TID>67043318</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>9874</PID>
-        <Description>NuevoProyecto</Description>
-        <State>ACTIVE</State>
-        <Tasks>
-            <TID>22339534</TID>
-        </Tasks>
-    </Project>
-    <Project>
-        <PID>8168</PID>
-        <Description>ashdc</Description>
-        <State>ACTIVE</State>
-        <Tasks/>
     </Project>
 </Projects>

@@ -67,7 +67,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		getContentPane().setBackground(Color.gray);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
 		
 		grid = new GridBagLayout();
 		gbc = new GridBagConstraints();
@@ -144,7 +144,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		BT_login.addActionListener(this);
 		
 		LB_incorrect_password = new JLabel("*Usuario y/o contraseña inválidos, intente de nuevo.");
-		LB_incorrect_password.setForeground(Color.gray);
+		LB_incorrect_password.setForeground(Color.LIGHT_GRAY);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
 		gbc.gridwidth = 1;
@@ -174,7 +174,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 	public void ShowHome(){
 		LimpiarVista();
 		
-		getContentPane().setBackground(Color.gray);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
 		
 		// Menu		
 		cargarMenuSuperior(true);
@@ -243,10 +243,11 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		BT_LogOut.addActionListener(this);
 		
 		if(isHome==false){
-			BT_AddTask = new JButton("Agregar tarea a proyecto");
+			BT_AddTask = new JButton("Agregar/eliminar/modificar Tarea");
 			add(BT_AddTask,gbc);
 			MB_menu.add(BT_AddTask,1);
 			BT_AddTask.addActionListener(this);
+			BT_AddTask.setEnabled(false);
 			BT_AddProject = new JButton("Agregar projecto");
 			add(BT_AddProject,gbc);
 			MB_menu.add(BT_AddProject,3);
@@ -265,10 +266,10 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		/* Primero borramos todos los elementos de la vista de login */
 		LimpiarVista();		
 		
-		/*Ahora cargamos los elementos de esta vista */
+		/* Ahora cargamos los elementos de esta vista */
 		
 		/* Primero cargamos el menu superior */
-		getContentPane().setBackground(Color.gray);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
 		// Menu
 		cargarMenuSuperior(false);
 		
@@ -321,7 +322,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		/*Ahora cargamos los elementos de esta vista */
 		
 		/* Primero cargamos el menu superior */
-		getContentPane().setBackground(Color.gray);
+		getContentPane().setBackground(Color.LIGHT_GRAY);
 		// Menu
 		cargarMenuSuperior(false);
 		
@@ -470,7 +471,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		
 		/* Handler del boton de log in */
 		if(e.getSource() == BT_login) {
-			LB_incorrect_password.setForeground(Color.gray);
+			LB_incorrect_password.setForeground(Color.LIGHT_GRAY);
 			revalidate();
 			repaint();
 			
@@ -599,6 +600,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		if (vista == 0)
 		{
 			if(e.getSource() == LS_projects){
+				BT_AddTask.setEnabled(true);
 				String[] columnNames = {"Description", "Context", "State", "Deadline", "TID"};
 				int ntasks = Main.user.getProjects().get(LS_projects.getSelectedIndex()).getTasks().size();
 				Object[][] data = new Object[ntasks][];
@@ -642,6 +644,7 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 			}
 			
 			if(e.getSource() == LS_projects){
+				BT_AddTask.setEnabled(true);
 				String[] columnNames = {"Tarea","Email Responsable", "Email Ejecutor"};
 				Object[][] data = new Object[datos][];		
 				
@@ -699,11 +702,18 @@ public class UserInterface extends JFrame implements ActionListener, ListSelecti
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()== KeyEvent.VK_ENTER){
 			
+			LB_incorrect_password.setForeground(Color.LIGHT_GRAY);
+			revalidate();
+			repaint();
+			
+			/* Si el usuario y contraseña son correctos entonces logueamos al usuario */
 			if(Main.searcher.ValidateUser(TF_email.getText(), PF_password.getPassword())){
 				Main.LogInUser(TF_email.getText(), new String(PF_password.getPassword()));
 			}
+			
+			/* Si el usuario y/o contraseña son incorrectos entonces se muestra un mensaje en pantalla */
 			else{
-				add(LB_incorrect_password,gbc);
+				LB_incorrect_password.setForeground(Color.red);
 				setVisible(true);
 			}
 		}

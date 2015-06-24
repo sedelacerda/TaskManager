@@ -17,7 +17,7 @@ public class Main {
 
 		ui = new UserInterface();
 		ui.ShowLoginScreen();
-		//LogInUser("jmleighton@uc.cl","098765");
+		LogInUser("sedelacerda@uc.cl","qwerty");
 	}
 	
 	public static void LogInUser(String user_email, String user_password) {

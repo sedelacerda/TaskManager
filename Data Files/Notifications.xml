@@ -4,30 +4,27 @@
         <Email>jmleighton@uc.cl</Email>
         <Password>098765</Password>
         <Notificaciones>
-            <Notificacion>not1,Leido</Notificacion>
-            <Notificacion>not2,Leido</Notificacion>
-            <Notificacion>not3,Leido</Notificacion>
-            <Notificacion>jmleighton@uc.cl te agregó como ejecutor de la tarea ,Leido</Notificacion>
-            <Notificacion>El usuario jmleighton@uc.cl lo ha agregado en la tarea null,Leido</Notificacion>
-            <Notificacion>El usuario jmleighton@uc.cl lo ha agregado en la tarea null,Leido</Notificacion>
-            <Notificacion>El usuario jmleighton@uc.cl lo ha agregado en la tarea null,Leido</Notificacion>
-            <Notificacion>El usuario jmleighton@uc.cl  ha eliminado la tarea null,Leido</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Encargar aceros</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Enviar aceros a obra</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Realizar diseño</Notificacion>
         </Notificaciones>
     </User>
     <User>
         <Email>sedelacerda@uc.cl</Email>
         <Password>qwerty</Password>
         <Notificaciones>
-            <Notificacion>not4,Leido</Notificacion>
-            <Notificacion>not5,Leido</Notificacion>
-            <Notificacion>not6,Leido</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl  ha eliminado la tarea: Enviar aceros a obra,Leido</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Enviar aceros a obra,Leido</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Enviar arena a obra,Leido</Notificacion>
         </Notificaciones>
     </User>
     <User>
         <Email>pjdonoso@uc.cl</Email>
         <Password>poiuyt</Password>
         <Notificaciones>
-            <Notificacion>not5,Leido</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Analizar terreno</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Encargar arena</Notificacion>
+            <Notificacion>El usuario sedelacerda@uc.cl lo ha agregado en la tarea: Realizar diseño</Notificacion>
         </Notificaciones>
     </User>
 </Notifications>

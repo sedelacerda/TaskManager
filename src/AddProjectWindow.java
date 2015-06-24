@@ -131,7 +131,7 @@ public class AddProjectWindow{
 						st = State.FROZEN;
 					if(CB_Estado.getSelectedItem().toString().trim().equalsIgnoreCase("closed"))
 						st = State.CLOSED;
-					String mensaje = "El usuario "+Main.user.getEmail()+" lo ha incluido en el proyecto "+TF_Descripcion.getSelectedText();
+					String mensaje = "El usuario "+Main.user.getEmail()+" lo ha incluido en el proyecto: "+TF_Descripcion.getText();
 					ArrayList<String> usuarios = new ArrayList<>();
 					usuarios.add(Main.user.getEmail());
 					Main.searcher.addNewNotification(mensaje,selectedExec);

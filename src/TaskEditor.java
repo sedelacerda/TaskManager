@@ -177,6 +177,7 @@ public class TaskEditor {
 		tomorrow = c.getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat( "dd-MM-yyyy" );
 		
+		//Revisar esto!!!
 		TF_Deadline = new JTextField();
 		TF_Deadline.setText(dateFormat.format(tomorrow));
 		panel.add(TF_Deadline, "4, 8, fill, default");
@@ -259,7 +260,7 @@ public class TaskEditor {
 					for(int i=0; i<LS_Ejecutores.getModel().getSize(); i++){
 						task.AddExecutor(new User(LS_Ejecutores.getModel().getElementAt(i).toString(), ""));
 					}
-					String mensaje = "El usuario "+Main.user.getEmail()+" lo ha agregado en la tarea "+TF_Descripcion.getSelectedText();
+					String mensaje = "El usuario "+Main.user.getEmail()+" lo ha agregado en la tarea: "+TF_Descripcion.getText();
 					Main.searcher.addNewNotification(mensaje,selectedExec);
 				}
 				
@@ -324,7 +325,7 @@ public class TaskEditor {
 				Main.LogInUser(emailaux,passaux);
 				
 				Main.ui.ShowTasksByProjectScreen(Main.user.getProjects());
-				String mensaje = "El usuario "+Main.user.getEmail()+"  ha eliminado la tarea "+TF_Descripcion.getSelectedText();
+				String mensaje = "El usuario "+Main.user.getEmail()+"  ha eliminado la tarea: "+comboBox_4.getSelectedItem().toString();
 				ArrayList<String> usuarios = new ArrayList<>();
 				usuarios.add(Main.user.getEmail());
 				Main.searcher.addNewNotification(mensaje,usuarios);

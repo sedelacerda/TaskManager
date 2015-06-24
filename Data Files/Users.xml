@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Users>
     <User>
-        <Email>sedelacerda@uc.cl</Email>
-        <Password>qwerty</Password>
-        <Projects>
-            <PID>1111</PID>
-            <PID>2222</PID>
-        </Projects>
-    </User>
-    <User>
-        <Email>jmleighton2@uc.cl</Email>
-        <Password>098765</Password>
-        <Projects>
-            <PID>5555</PID>
-            <PID>6666</PID>
-        </Projects>
-    </User>
-    <User>
-        <Email>soytu@uc.cl</Email>
-        <Password>poiu</Password>
-        <Projects/>
-    </User>
-    <User>
-        <Email>soyel@uc.cl</Email>
-        <Password>mnbv</Password>
-        <Projects/>
-    </User>
-    <User>
         <Email>pjdonoso@uc.cl</Email>
         <Password>poiuyt</Password>
         <Projects>
@@ -40,6 +14,13 @@
         <Projects>
             <PID>9874</PID>
             <PID>8168</PID>
+        </Projects>
+    </User>
+    <User>
+        <Email>sedelacerda@uc.cl</Email>
+        <Password>qwerty</Password>
+        <Projects>
+            <PID>7630</PID>
         </Projects>
     </User>
 </Users>
